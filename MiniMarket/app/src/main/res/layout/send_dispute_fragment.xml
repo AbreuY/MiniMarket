@@ -1,0 +1,71 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="vertical" android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:padding="8dp">
+
+    <EditText
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:id="@+id/sendDisputeFragment.edTx"
+        android:hint="@string/enterMessage"
+        android:gravity="center_horizontal"
+        android:maxLines="3"
+        android:layout_below="@+id/sendDisputeFragment.edTxTheme"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true" />
+
+    <Button
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="@string/addphoto"
+        android:id="@+id/sendDisputeFragment.btnAddphoto"
+        android:layout_gravity="center_horizontal"
+        android:layout_above="@+id/sendDisputeFragment.btnSend"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="8dp"
+        android:textAllCaps="false"
+        android:background="@drawable/button_blue_background"
+        android:textColor="@color/white"/>
+    <android.support.v7.widget.RecyclerView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_below="@+id/sendDisputeFragment.edTx"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true"
+        android:layout_marginTop="8dp"
+        android:layout_above="@+id/sendDisputeFragment.btnAddphoto"
+        android:id="@+id/sendDisputeFragment.recyclerView"></android.support.v7.widget.RecyclerView>
+    <Button
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true"
+        android:id="@+id/sendDisputeFragment.btnSend"
+        android:layout_marginTop="8dp"
+        android:background="@drawable/button_blue_background"
+        android:text="@string/send"
+        android:textAllCaps="false"
+        android:textColor="@color/white"/>
+
+    <EditText
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/sendDisputeFragment.edTxTheme"
+        android:hint="@string/theme"
+        android:gravity="center_horizontal"
+        android:layout_alignParentTop="true"
+        android:layout_alignParentRight="true"
+        android:layout_alignParentEnd="true"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true" />
+
+    <ProgressBar
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/sendDisputeFragment.progressBar"
+        android:layout_centerVertical="true"
+        android:layout_centerHorizontal="true"
+        android:indeterminate="false" />
+</RelativeLayout>

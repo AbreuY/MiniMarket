@@ -1,0 +1,104 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    xmlns:card_view="http://schemas.android.com/apk/res-auto"
+    >
+    <android.support.v7.widget.CardView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        card_view:cardBackgroundColor="@android:color/white"
+        card_view:cardElevation="6dp"
+        android:layout_marginBottom="6dp">
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="140dp">
+    <RelativeLayout
+        android:layout_width="wrap_content"
+        android:layout_height="140dp"
+        android:padding="8dp"
+        android:id="@+id/itemBasket.rlClickItem"
+        android:layout_toLeftOf="@+id/relativeLayout2"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true">
+        <ImageView
+            android:layout_width="100dp"
+            android:layout_height="match_parent"
+            android:id="@+id/itemBasket.ivImage"
+            android:scaleType="centerCrop"/>
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:id="@+id/itemBasket.tvName"
+            android:layout_alignParentTop="true"
+            android:layout_toRightOf="@+id/itemBasket.ivImage"
+            android:layout_toEndOf="@+id/itemBasket.ivImage"
+            android:layout_marginLeft="8dp"
+            android:textStyle="bold" />
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="New Text"
+            android:id="@+id/itemBasket.tvDescription"
+            android:layout_below="@+id/itemBasket.tvName"
+            android:layout_alignLeft="@+id/itemBasket.tvName"
+            android:layout_alignStart="@+id/itemBasket.tvName"
+            android:layout_marginTop="6dp"
+            android:maxLines="3" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="New Text"
+            android:id="@+id/itemBasket.tvPrice"
+            android:layout_below="@+id/itemBasket.tvDescription"
+            android:layout_alignLeft="@+id/itemBasket.tvDescription"
+            android:layout_alignStart="@+id/itemBasket.tvDescription"
+            android:layout_marginTop="8dp"
+            android:textStyle="bold" />
+    </RelativeLayout>
+    <RelativeLayout
+        android:layout_width="80dp"
+        android:layout_height="wrap_content"
+        android:layout_alignParentTop="true"
+        android:layout_alignParentRight="true"
+        android:layout_alignParentEnd="true"
+        android:id="@+id/relativeLayout2"
+        android:layout_alignParentBottom="true"
+        android:padding="8dp">
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:id="@+id/itemBasket.tvAmountProduct"
+            android:layout_centerVertical="true"
+            android:layout_centerHorizontal="true"
+            android:gravity="center_horizontal" />
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="+"
+            android:id="@+id/itemBasket.tvAddProduct"
+            android:layout_alignParentTop="true"
+            android:layout_centerHorizontal="true"
+            android:textSize="25dp"
+            android:gravity="center_horizontal"
+            android:background="?attr/selectableItemBackground"/>
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="-"
+            android:id="@+id/itemBasket.tvDeleteProduct"
+            android:layout_alignParentBottom="true"
+            android:layout_centerHorizontal="true"
+            android:textSize="35dp"
+            android:gravity="center_horizontal"
+            android:background="?attr/selectableItemBackground"/>
+    </RelativeLayout>
+    </RelativeLayout>
+    </android.support.v7.widget.CardView>
+</RelativeLayout>

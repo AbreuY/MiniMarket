@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="vertical" android:layout_width="match_parent"
+    android:layout_height="match_parent">
+    <EditText
+        android:id="@+id/dispatcherForm.edTxOrganization"
+        android:hint="@string/nameOrg"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:gravity="center_horizontal"
+        android:imeOptions="actionNext"
+        android:singleLine="true"/>
+    <EditText
+        android:id="@+id/dispatcherForm.edTxInn"
+        android:hint="@string/TINTaxpayer"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:gravity="center_horizontal"
+        android:imeOptions="actionNext"
+        android:singleLine="true"/>
+    <EditText
+        android:id="@+id/dispatcherForm.edTxAddress"
+        android:hint="@string/addressOrg"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:gravity="center_horizontal"
+        android:imeOptions="actionNext"
+        android:singleLine="true"/>
+</LinearLayout>

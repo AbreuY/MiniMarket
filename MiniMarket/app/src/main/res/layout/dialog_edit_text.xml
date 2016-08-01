@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="vertical" android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+    android:paddingLeft="45dp"
+    android:paddingRight="45dp"
+    android:paddingTop="16dp"
+    android:paddingBottom="16dp">
+    <TextView
+        android:id="@+id/dialogEdTx.tvTitle"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center_horizontal"
+        android:textSize="18dp"/>
+    <EditText
+        android:id="@+id/dialogEdTx.edTx"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center_horizontal"
+        android:paddingLeft="32dp"
+        android:paddingRight="32dp"
+        android:layout_marginTop="8dp"
+        android:maxLines="3"
+
+        android:imeOptions="actionNext"
+        android:hint="@string/enterMessage" />
+    <Button
+        android:id="@+id/dialogEdTx.btn"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="8dp"
+        android:background="@drawable/button_blue_background"
+        android:textColor="@color/white"
+        android:layout_gravity="center_horizontal"
+        android:layout_marginLeft="32dp"
+        android:layout_marginRight="32dp"
+        android:textAllCaps="false"/>
+</LinearLayout>

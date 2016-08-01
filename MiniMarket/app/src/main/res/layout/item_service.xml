@@ -1,0 +1,103 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:card_view="http://schemas.android.com/apk/res-auto"
+    android:orientation="vertical"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:paddingBottom="12dp">
+    <android.support.v7.widget.CardView
+        android:id="@+id/itemService.cardView"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        card_view:cardBackgroundColor="@android:color/white"
+        card_view:cardElevation="6dp"
+        card_view:cardCornerRadius="1dp">
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:padding="8dp">
+            <ImageView
+
+                android:layout_width="100dp"
+                android:layout_height="100dp"
+                android:id="@+id/itemService.ivService" />
+
+            <ImageView
+                android:layout_width="40dp"
+                android:layout_height="40dp"
+                android:id="@+id/itemService.ivShop"
+                android:layout_alignParentTop="true"
+                android:layout_toRightOf="@+id/itemService.ivService"
+                android:layout_toEndOf="@+id/itemService.ivService"
+                android:layout_marginLeft="6dp" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="New Text"
+                android:id="@+id/itemService.tvId"
+                android:layout_alignParentTop="true"
+                android:layout_toRightOf="@+id/itemService.ivShop"
+                android:layout_alignParentRight="true"
+                android:layout_alignParentEnd="true"
+                android:layout_marginLeft="6dp" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="New Text"
+                android:id="@+id/itemService.tvNameShop"
+                android:layout_alignBottom="@+id/itemService.ivShop"
+                android:layout_toRightOf="@+id/itemService.ivShop"
+                android:layout_alignRight="@+id/itemService.tvId"
+                android:layout_alignEnd="@+id/itemService.tvId"
+                android:layout_marginLeft="6dp" />
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="New Text"
+                android:id="@+id/itemService.tvNameService"
+                android:layout_below="@+id/itemService.ivShop"
+                android:layout_alignLeft="@+id/itemService.ivShop"
+                android:layout_alignStart="@+id/itemService.ivShop"
+                android:layout_marginTop="8dp" />
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="New Text"
+                android:id="@+id/itemService.tvdate"
+                android:layout_below="@+id/itemService.tvNameService"
+                android:layout_alignLeft="@+id/itemService.tvNameService"
+                android:layout_alignStart="@+id/itemService.tvNameService" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/price"
+                android:id="@+id/textView11"
+                android:layout_below="@+id/itemService.tvdate"
+                android:layout_alignLeft="@+id/itemService.tvdate"
+                android:layout_alignStart="@+id/itemService.tvdate" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="New Text"
+                android:id="@+id/itemService.tvPrice"
+                android:layout_alignTop="@+id/textView11"
+                android:layout_toRightOf="@+id/textView11"
+                android:layout_toEndOf="@+id/textView11"
+                android:layout_marginLeft="8dp" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:id="@+id/itemService.tvStatus"
+                android:layout_below="@+id/itemService.tvdate"
+                android:layout_alignParentRight="true"
+                android:layout_alignParentEnd="true" />
+        </RelativeLayout>
+    </android.support.v7.widget.CardView>
+</RelativeLayout>

@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <color name="colorPrimary">#9e9c9c</color>
+    <color name="colorPrimaryDark">#303F9F</color>
+    <color name="colorAccent">#3a7bde</color>
+    <!-- PickerUI lines colors -->
+    <color name="lines_panel_pickerui">#aaaaaa</color>
+
+    <!-- PickerUI panel colors -->
+    <color name="background_panel_pickerui">#fffafafa</color>
+    <color name="activeIndicator">#3a7bde</color>
+    <color name="inActiveIndicator">#504d4d</color>
+    <!-- PickerUI items colors -->
+    <color name="text_center_pickerui">#ff000000</color>
+    <color name="text_no_center_pickerui">#aaa</color>
+    <drawable name="list_item_selected">#aaaaaa</drawable>
+    <color name="divider_color2">#23545454</color>
+    <!-- PickerUI shadow colors -->
+    <color name="grey1">#00CCCCCC</color>
+    <color name="grey2">#10CCCCCC</color>
+    <color name="grey3">#20CCCCCC</color>
+    <color name="grey4">#30CCCCCC</color>
+    <color name="grey5">#50747474</color>
+    <color name="white">#fff</color>
+    <color name="blueAlpha">#8b3a7bde</color>
+    <color name="color_end" >#626466</color>
+
+</resources>

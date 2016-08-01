@@ -1,0 +1,62 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:card_view="http://schemas.android.com/apk/res-auto"
+    android:orientation="vertical"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content">
+<android.support.v7.widget.CardView
+    android:id="@+id/itemNotification.cardView"
+    android:layout_width="match_parent"
+    android:layout_height="115dp"
+    card_view:cardElevation="8dp"
+    card_view:cardBackgroundColor="@android:color/white"
+
+    android:layout_marginBottom="6dp">
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:padding="8dp">
+        <ImageView
+            android:layout_width="100dp"
+            android:layout_height="100dp"
+            android:id="@+id/itemNotification.ivShop"
+            android:scaleType="centerCrop"/>
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="New Text"
+            android:id="@+id/itemNotification.tvName"
+            android:layout_alignTop="@+id/itemNotification.ivShop"
+            android:layout_toRightOf="@+id/itemNotification.ivShop"
+            android:layout_toEndOf="@+id/itemNotification.ivShop"
+            android:layout_marginLeft="12dp"
+            android:layout_marginStart="14dp"
+            android:textStyle="bold" />
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="New Text"
+            android:id="@+id/itemNotification.tvNotification"
+            android:layout_below="@+id/itemNotification.tvName"
+            android:layout_alignLeft="@+id/itemNotification.tvName"
+            android:layout_alignStart="@+id/itemNotification.tvName"
+            android:layout_marginTop="12dp" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="New Text"
+            android:id="@+id/itemNotification.tvDate"
+            android:layout_below="@+id/itemNotification.tvNotification"
+            android:layout_alignParentRight="true"
+            android:layout_alignParentEnd="true"
+            android:layout_marginTop="32dp"
+            android:layout_toRightOf="@+id/itemNotification.ivShop"
+            android:layout_toEndOf="@+id/itemNotification.ivShop"
+            android:layout_marginLeft="12dp"
+            android:gravity="right" />
+    </RelativeLayout>
+</android.support.v7.widget.CardView>
+</LinearLayout>

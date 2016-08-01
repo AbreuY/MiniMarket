@@ -1,0 +1,66 @@
+<?xml version="1.0" encoding="utf-8"?>
+<android.support.v4.widget.NestedScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent" android:layout_height="match_parent">
+    <FrameLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+    <ImageView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:src="@drawable/background"
+        android:scaleType="fitXY"/>
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:padding="16dp"
+        android:layout_gravity="left|top">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/profile"
+            android:id="@+id/profileFragment.tvTitle"
+            android:layout_alignParentTop="true"
+            android:layout_centerHorizontal="true"
+            android:textSize="32dp" />
+        <LinearLayout
+            android:id="@+id/profileFragment.ll"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/profileFragment.tvTitle"
+            android:layout_marginTop="32dp"
+            android:orientation="vertical">
+            <FrameLayout
+                android:id="@+id/profileFragment.frame1"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
+            </FrameLayout>
+            <FrameLayout
+                android:id="@+id/profileFragment.frame2"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"></FrameLayout>
+            <FrameLayout
+                android:id="@+id/profileFragment.frame3"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"></FrameLayout>
+            <FrameLayout
+                android:id="@+id/profileFragment.frame4"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"></FrameLayout>
+        </LinearLayout>
+        <Button
+            android:layout_below="@+id/profileFragment.ll"
+            android:layout_width="wrap_content"
+            android:layout_height="32dp"
+            android:layout_marginTop="16dp"
+            android:text="@string/save"
+            android:layout_centerHorizontal="true"
+            android:background="@drawable/button_background"
+            android:textAllCaps="false"
+            android:paddingLeft="16dp"
+            android:paddingRight="16dp"
+            android:id="@+id/profileFragment.btnSave" />
+    </RelativeLayout>
+    </FrameLayout>
+</android.support.v4.widget.NestedScrollView>

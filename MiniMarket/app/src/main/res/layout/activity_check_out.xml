@@ -1,0 +1,192 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+
+
+    android:orientation="vertical"
+    tools:context="com.balinasoft.minimarket.Ui.Activities.CheckOutActivity">
+
+    <android.support.v7.widget.Toolbar
+        android:id="@+id/activityCheckOut.toolBar"
+        android:layout_width="match_parent"
+        android:layout_height="?attr/actionBarSize"
+        android:background="?attr/colorPrimary"
+        app:titleTextColor="@android:color/white"
+        app:popupTheme="@style/AppTheme.PopupOverlay"></android.support.v7.widget.Toolbar>
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_alignBottom="@+id/view"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true"
+        android:padding="12dp">
+
+        <TextView
+            android:id="@+id/textView2"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="@string/OrderDelivery"
+            android:textSize="16dp"
+            android:textStyle="bold"
+            android:layout_alignParentTop="true"
+            android:layout_alignParentRight="true"
+            android:layout_alignParentEnd="true" />
+
+        <ImageView
+            android:id="@+id/activityCheckOut.ivBtnDialogAddress"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:src="@drawable/adress"
+            android:layout_below="@+id/textView2"
+            android:layout_alignRight="@+id/textView2"
+            android:layout_alignEnd="@+id/textView2" />
+
+        <EditText
+            android:id="@+id/activityCheckOut.edTxAddress"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:ems="10"
+            android:inputType="textPersonName"
+            android:hint="@string/hintAddress"
+            android:layout_alignTop="@+id/activityCheckOut.ivBtnDialogAddress"
+            android:layout_alignParentLeft="true"
+            android:layout_alignParentStart="true"
+            android:layout_toLeftOf="@+id/activityCheckOut.ivBtnDialogAddress"
+            android:layout_toStartOf="@+id/activityCheckOut.ivBtnDialogAddress" />
+
+        <TextView
+            android:id="@+id/textView4"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_alignEnd="@+id/activityCheckOut.ivBtnDialogAddress"
+            android:layout_alignLeft="@+id/activityCheckOut.edTxAddress"
+            android:layout_alignRight="@+id/activityCheckOut.ivBtnDialogAddress"
+            android:layout_alignStart="@+id/activityCheckOut.edTxAddress"
+            android:layout_below="@+id/activityCheckOut.edTxAddress"
+            android:layout_marginTop="8dp"
+            android:text="@string/addressText" />
+
+        <TextView
+            android:id="@+id/textView5"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_alignLeft="@+id/textView4"
+            android:layout_alignStart="@+id/textView4"
+            android:layout_below="@+id/textView4"
+            android:layout_marginTop="8dp"
+            android:text="@string/selectDate"
+            android:textSize="16dp"
+            android:textStyle="bold" />
+
+        <EditText
+            android:id="@+id/activityCheckOut.edTxDate"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_alignLeft="@+id/textView5"
+            android:layout_alignStart="@+id/textView5"
+            android:layout_below="@+id/textView5"
+            android:layout_marginTop="8dp"
+            android:hint="@string/date"
+            android:gravity="center_horizontal"
+            android:layout_alignRight="@+id/activityCheckOut.btnConfrim"
+            android:layout_alignEnd="@+id/activityCheckOut.btnConfrim" />
+        <EditText
+            android:id="@+id/activityCheckOut.edTxTime"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_alignTop="@+id/activityCheckOut.edTxDate"
+            android:layout_alignParentRight="true"
+            android:layout_alignParentEnd="true"
+            android:hint="@string/time"
+            android:layout_toRightOf="@+id/activityCheckOut.edTxDate"
+            android:layout_toEndOf="@+id/activityCheckOut.edTxDate"
+            android:gravity="center_horizontal"/>
+        <TextView
+            android:id="@+id/textView6"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_alignLeft="@+id/activityCheckOut.edTxDate"
+            android:layout_alignStart="@+id/activityCheckOut.edTxDate"
+            android:layout_below="@+id/activityCheckOut.edTxDate"
+            android:layout_marginTop="8dp"
+            android:textSize="16dp"
+            android:textStyle="bold"
+            android:text="@string/selectPayment" />
+
+        <info.hoang8f.android.segmented.SegmentedGroup
+            android:id="@+id/activityCheckOut.segmentedGroup"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_alignLeft="@+id/textView6"
+            android:layout_alignStart="@+id/textView6"
+            android:layout_below="@+id/textView6"
+            android:layout_marginTop="8dp"
+            android:orientation="horizontal"
+            tools:sc_border_width="1dp"
+            tools:sc_corner_radius="10dp">
+
+            <RadioButton
+                android:id="@+id/activityCheckOut.btnCash"
+                android:layout_width="match_parent"
+                android:layout_height="32dp"
+                android:layout_weight="1"
+
+                android:text="@string/byCash"
+                style="@style/RadioButton"/>
+
+            <RadioButton
+                android:id="@+id/activityCheckOut.btnCard"
+                android:layout_width="match_parent"
+                android:layout_height="32dp"
+                android:layout_weight="1"
+                android:text="@string/card"
+                style="@style/RadioButton"/>
+        </info.hoang8f.android.segmented.SegmentedGroup>
+
+        <EditText
+            android:id="@+id/activityCheckOut.edTxDescription"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_alignLeft="@+id/activityCheckOut.segmentedGroup"
+            android:layout_alignStart="@+id/activityCheckOut.segmentedGroup"
+            android:layout_below="@+id/activityCheckOut.segmentedGroup"
+            android:layout_marginTop="8dp"
+            android:gravity="center_horizontal"
+            android:hint="@string/description"
+            android:maxLines="3"/>
+
+        <TextView
+            android:id="@+id/activityCheckOut.tvPrice"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignLeft="@+id/activityCheckOut.edTxDescription"
+            android:layout_alignParentEnd="true"
+            android:layout_alignParentRight="true"
+            android:layout_alignStart="@+id/activityCheckOut.edTxDescription"
+            android:layout_below="@+id/activityCheckOut.edTxDescription"
+            android:layout_marginTop="8dp"
+            android:gravity="center_horizontal"
+            android:text="New Text" />
+
+        <Button
+            android:id="@+id/activityCheckOut.btnConfrim"
+            android:layout_width="wrap_content"
+            android:layout_height="30dp"
+            android:layout_below="@+id/activityCheckOut.tvPrice"
+            android:layout_centerHorizontal="true"
+            android:layout_marginTop="8dp"
+            android:text="@string/confrim"
+            android:textColor="@color/white"
+            android:textAllCaps="false"
+            android:paddingLeft="16dp"
+            android:paddingRight="16dp"
+            android:background="@drawable/button_blue_background"/>
+
+
+    </RelativeLayout>
+
+</LinearLayout>

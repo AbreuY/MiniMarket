@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+
+    android:orientation="vertical"
+    android:padding="8dp">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="?attr/actionBarSize"
+        android:orientation="horizontal"
+        android:id="@+id/linearLayout2"
+        android:background="@color/white">
+
+        <ImageView
+            android:id="@+id/searchDialog.ivBack"
+            android:layout_width="wrap_content"
+            android:layout_height="32dp"
+            android:layout_marginLeft="4dp"
+            android:layout_gravity="center_vertical"/>
+
+        <EditText
+            android:id="@+id/searchDialog.edTxSearch"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="8dp"
+            android:singleLine="true"
+            android:imeOptions="actionSearch"
+            android:background="@null"
+            android:layout_gravity="center_vertical"/>
+    </LinearLayout>
+    <com.orangegangsters.github.swipyrefreshlayout.library.SwipyRefreshLayout
+        android:id="@+id/searchDialog.swipe"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/linearLayout2"
+        android:layout_marginTop="8dp">
+    <android.support.v7.widget.RecyclerView
+        android:id="@+id/searchDialog.recyclerView"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        >
+       </android.support.v7.widget.RecyclerView>
+    </com.orangegangsters.github.swipyrefreshlayout.library.SwipyRefreshLayout>
+</RelativeLayout>

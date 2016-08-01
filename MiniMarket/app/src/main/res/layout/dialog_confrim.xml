@@ -1,0 +1,59 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="vertical" android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+    android:padding="16dp">
+
+
+    <Button
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/dispatcher"
+        android:id="@+id/dialogConfrim.btnDispatcher"
+        android:paddingLeft="16dp"
+        android:paddingRight="16dp"
+        android:background="@drawable/button_blue_background"
+        android:textAllCaps="false"
+        android:textColor="@color/white"/>
+
+    <Button
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/courier"
+        android:id="@+id/dialogConfrim.btnCourier"
+        android:layout_alignTop="@+id/dialogConfrim.btnDispatcher"
+        android:layout_toRightOf="@+id/dialogConfrim.btnDispatcher"
+        android:layout_toEndOf="@+id/dialogConfrim.btnDispatcher"
+        android:paddingLeft="16dp"
+        android:paddingRight="16dp"
+        android:background="@drawable/button_blue_background"
+        android:layout_marginLeft="8dp"
+        android:textAllCaps="false"
+        android:textColor="@color/white"/>
+    <com.balinasoft.minimarket.Ui.CustomViews.CustomNumberPicker
+        android:layout_width="150dp"
+        android:layout_height="150dp"
+        android:layout_marginTop="56dp"
+        android:layout_alignParentTop="true"
+        android:layout_alignRight="@+id/dialogConfrim.btnCourier"
+        android:layout_alignEnd="@+id/dialogConfrim.btnCourier"
+        android:layout_alignLeft="@+id/dialogConfrim.btnDispatcher"
+
+        android:layout_alignStart="@+id/dialogConfrim.btnDispatcher"
+        android:id="@+id/dialogConfrim.numPicker"></com.balinasoft.minimarket.Ui.CustomViews.CustomNumberPicker>
+
+    <Button
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/ok"
+        android:id="@+id/dialogConfrim.btnOk"
+        android:layout_below="@+id/dialogConfrim.numPicker"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true"
+        android:layout_alignRight="@+id/dialogConfrim.numPicker"
+        android:layout_alignEnd="@+id/dialogConfrim.numPicker"
+        android:background="@drawable/button_blue_background"
+        android:textColor="@color/white"
+        android:layout_marginTop="8dp"
+        android:textAllCaps="false"/>
+</RelativeLayout>

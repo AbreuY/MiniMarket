@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string-array name="menuBuyer">
+        <item>@string/catalog</item>
+        <item>@string/profile</item>
+        <item>@string/basket</item>
+        <item>@string/myOrders</item>
+        <item>@string/myServices</item>
+        <item>@string/myFavorites</item>
+        <item>@string/notifications</item>
+    </string-array>
+    <string-array name="menuManager">
+        <item>@string/shops</item>
+        <item>@string/profile</item>
+        <item>@string/orders</item>
+        <item>@string/record</item>
+        <item>@string/disputs</item>
+        <item>@string/notifications</item>
+    </string-array>
+    <string-array name="menuCourier">
+        <item>@string/profile</item>
+        <item>@string/orders</item>
+        <item>@string/notifications</item>
+    </string-array>
+
+    <string-array name="statusCourier">
+        <item>@string/available</item>
+        <item>@string/notAvailable</item>
+
+    </string-array>
+    <string-array name="menuDispatcher">
+        <item>@string/profile</item>
+        <item>@string/couriers</item>
+        <item>@string/orders</item>
+        <item>@string/record</item>
+        <item>@string/notifications</item>
+    </string-array>
+</resources>

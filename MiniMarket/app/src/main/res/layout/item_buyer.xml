@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:cardView="http://schemas.android.com/apk/res-auto"
+    android:orientation="vertical"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content">
+    <android.support.v7.widget.CardView
+        android:id="@+id/itemBuyer.cardView"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="12dp"
+        cardView:cardElevation="6dp"
+        cardView:contentPadding="12dp">
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="New Text"
+                android:id="@+id/itemBuyer.tvFio"
+                android:textStyle="bold"
+                android:textSize="16dp"
+                android:layout_alignParentTop="true"
+                android:layout_alignParentLeft="true"
+                android:layout_alignParentStart="true"
+                android:layout_alignParentRight="true"
+                android:layout_alignParentEnd="true" />
+            <ImageView
+                android:layout_width="40dp"
+                android:layout_height="40dp"
+                android:layout_alignTop="@+id/itemBuyer.ivPhone"
+                android:layout_toLeftOf="@+id/itemBuyer.ivPhone"
+                android:layout_toStartOf="@+id/itemBuyer.ivPhone"
+                android:layout_marginRight="8dp"
+                android:id="@+id/itemBuyer.ivMail"
+                android:src="@drawable/mail" />
+            <ImageView
+                android:layout_width="40dp"
+                android:layout_height="40dp"
+                android:layout_below="@+id/itemBuyer.tvFio"
+                android:layout_alignParentRight="true"
+                android:layout_alignParentEnd="true"
+                android:id="@+id/itemBuyer.ivPhone"
+                android:layout_marginTop="8dp"
+                android:src="@drawable/phone" />
+        </RelativeLayout>
+    </android.support.v7.widget.CardView>
+</LinearLayout>
