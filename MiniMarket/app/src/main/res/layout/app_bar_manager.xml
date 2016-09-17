@@ -1,12 +1,12 @@
 <?xml version="1.0" encoding="utf-8"?>
-<com.balinasoft.minimarket.Utils.DisableableCoordinatorLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<com.balinasoft.mallione.Utils.DisableableCoordinatorLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:id="@+id/managerActivity.coordinator"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:fitsSystemWindows="true"
-    tools:context="com.balinasoft.minimarket.Ui.Activities.ManagerActivity">
+    tools:context="com.balinasoft.mallione.Ui.Activities.ManagerActivity">
 
     <android.support.design.widget.AppBarLayout
         android:id="@+id/managerActivity.app_bar_layout"
@@ -51,6 +51,11 @@
 
     </android.support.design.widget.AppBarLayout>
 
+    <com.orangegangsters.github.swipyrefreshlayout.library.SwipyRefreshLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/managerActivity.swipe"
+        app:layout_behavior="@string/appbar_scrolling_view_behavior">
     <android.support.v4.widget.NestedScrollView
         android:id="@+id/managerActivity.nestedScroll"
         android:layout_width="match_parent"
@@ -66,10 +71,12 @@
 
         </FrameLayout>
     </android.support.v4.widget.NestedScrollView>
+    </com.orangegangsters.github.swipyrefreshlayout.library.SwipyRefreshLayout>
+
     <FrameLayout
         android:id="@+id/managerActivity.frameContainerNonCollapse"
         app:layout_behavior="@string/appbar_scrolling_view_behavior"
         android:layout_width="match_parent"
         android:layout_height="match_parent"></FrameLayout>
 
-</com.balinasoft.minimarket.Utils.DisableableCoordinatorLayout>
+</com.balinasoft.mallione.Utils.DisableableCoordinatorLayout>

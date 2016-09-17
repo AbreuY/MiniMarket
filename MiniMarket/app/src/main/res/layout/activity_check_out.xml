@@ -7,7 +7,7 @@
 
 
     android:orientation="vertical"
-    tools:context="com.balinasoft.minimarket.Ui.Activities.CheckOutActivity">
+    tools:context="com.balinasoft.mallione.Ui.Activities.CheckOutActivity">
 
     <android.support.v7.widget.Toolbar
         android:id="@+id/activityCheckOut.toolBar"

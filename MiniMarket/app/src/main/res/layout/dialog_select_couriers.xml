@@ -10,12 +10,12 @@
         android:layout_gravity="center_horizontal"
         android:layout_marginRight="32dp"
         android:layout_marginLeft="32dp" />
-    <com.balinasoft.minimarket.Ui.CustomViews.CustomNumberPicker
+    <com.balinasoft.mallione.Ui.CustomViews.CustomNumberPicker
         android:id="@+id/dialogSelectCourier.numPicker"
         android:layout_marginTop="8dp"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_gravity="center_horizontal"></com.balinasoft.minimarket.Ui.CustomViews.CustomNumberPicker>
+        android:layout_gravity="center_horizontal"></com.balinasoft.mallione.Ui.CustomViews.CustomNumberPicker>
 <Button
     android:id="@+id/dialogSelectCourier.btnOk"
     android:layout_marginTop="8dp"

@@ -2,10 +2,15 @@
     <string name="app_name">MALLIONE</string>
     <string name="App_name">MALLIONE</string>
     <string name="title_activity_main">MainActivity</string>
-
+    <string name="title_activity_buyer">Buyer</string>
+    <string name="title_activity_buer">buerActivity</string>
+    <string name="title_activity_manager">ManagerActivity</string>
+    <string name="title_activity_courier">CourierActivity</string>
+    <string name="title_activity_dispatcher">DispatcherActivity</string>
     <string name="navigation_drawer_open">Open navigation drawer</string>
     <string name="navigation_drawer_close">Close navigation drawer</string>
-
+    <string name="enterPassword">Введите пароль</string>
+    <string name="enterEmail">Введите email</string>
     <string name="action_settings">Настройки</string>
     <string name="error">Ошибка на сервере.Попробуйте еще раз.</string>
     <string name="nuberPhone">Номер телефона</string>

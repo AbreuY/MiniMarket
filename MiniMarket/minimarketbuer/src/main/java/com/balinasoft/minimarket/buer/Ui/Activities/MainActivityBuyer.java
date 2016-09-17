@@ -1,4 +1,4 @@
-package com.balinasoft.minimarket.buer.Ui.Activities;
+package com.balinasoft.mallione.buer.Ui.Activities;
 
 import android.os.Bundle;
 import android.support.design.widget.FloatingActionButton;
@@ -13,7 +13,7 @@ import android.support.v7.widget.Toolbar;
 import android.view.Menu;
 import android.view.MenuItem;
 
-import com.balinasoft.minimarket.buer.R;
+import com.balinasoft.mallione.buer.R;
 
 public class MainActivityBuyer extends AppCompatActivity
         implements NavigationView.OnNavigationItemSelectedListener {

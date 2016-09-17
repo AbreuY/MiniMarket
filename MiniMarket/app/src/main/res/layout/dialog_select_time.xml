@@ -29,20 +29,20 @@
         android:orientation="horizontal"
         android:layout_gravity="center_horizontal"
         android:layout_marginBottom="8dp">
-        <com.balinasoft.minimarket.Ui.CustomViews.CustomNumberPicker
+        <com.balinasoft.mallione.Ui.CustomViews.CustomNumberPicker
             android:id="@+id/dialogSelectTime.numPickerDays"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_weight="1">
 
-        </com.balinasoft.minimarket.Ui.CustomViews.CustomNumberPicker>
-        <com.balinasoft.minimarket.Ui.CustomViews.CustomNumberPicker
+        </com.balinasoft.mallione.Ui.CustomViews.CustomNumberPicker>
+        <com.balinasoft.mallione.Ui.CustomViews.CustomNumberPicker
             android:id="@+id/dialogSelectTime.numPickerHours"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_weight="1">
 
-        </com.balinasoft.minimarket.Ui.CustomViews.CustomNumberPicker>
+        </com.balinasoft.mallione.Ui.CustomViews.CustomNumberPicker>
     </LinearLayout>
     <LinearLayout
         android:layout_width="300dp"

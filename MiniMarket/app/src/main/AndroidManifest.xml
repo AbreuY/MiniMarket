@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
-    package="com.balinasoft.minimarket">
+    package="com.balinasoft.mallione">
     <!-- <permission -->
     <!-- android:name="com.balinasoft.traveler.C2D_MESSAGE" -->
     <!-- android:protectionLevel="signature" /> -->
@@ -25,7 +25,7 @@
     <uses-permission android:name="com.balinasoft.minimarket.permission.C2D_MESSAGE" />
 
     <permission
-        android:name="com.balinasoft.minimarket.permission.C2D_MESSAGE"
+        android:name="com.balinasoft.mallione.permission.C2D_MESSAGE"
         android:protectionLevel="signature" />
 
     <uses-permission android:name="com.balinasoft.minimarket.permission.C2D_MESSAGE" />
@@ -39,7 +39,7 @@
         android:label="@string/app_name"
         android:theme="@style/AppTheme">
         <activity
-            android:name=".Ui.Activities.MainActivity"
+            android:name="com.balinasoft.mallione.Ui.Activities.MainActivity"
             android:label="@string/App_name"
             android:screenOrientation="portrait"
             android:theme="@style/AppThemeTranspanent">
@@ -50,7 +50,7 @@
             </intent-filter>
         </activity>
 
-        <service android:name=".networking.Services.MyFirebaseMessagingService">
+        <service android:name="com.balinasoft.mallione.networking.Services.MyFirebaseMessagingService">
             <intent-filter>
                 <action android:name="com.google.firebase.MESSAGING_EVENT" />
             </intent-filter>
@@ -73,32 +73,32 @@
         </receiver>
 
         <activity
-            android:name=".Ui.Activities.BuerActivity"
+            android:name="com.balinasoft.mallione.Ui.Activities.BuerActivity"
             android:label="@string/title_activity_buer"
             android:screenOrientation="portrait"
             android:theme="@style/AppThemeTranspanent" />
         <activity
-            android:name=".Ui.Activities.ManagerActivity"
+            android:name="com.balinasoft.mallione.Ui.Activities.ManagerActivity"
             android:label="@string/title_activity_manager"
             android:screenOrientation="portrait"
             android:theme="@style/AppThemeTranspanent" />
         <activity
-            android:name=".Ui.Activities.CourierActivity"
+            android:name="com.balinasoft.mallione.Ui.Activities.CourierActivity"
             android:label="@string/title_activity_courier"
             android:screenOrientation="portrait"
             android:theme="@style/AppTheme.NoActionBar" />
         <activity
-            android:name=".Ui.Activities.BasketItemsActivity"
+            android:name="com.balinasoft.mallione.Ui.Activities.BasketItemsActivity"
             android:label="@string/basket"
             android:screenOrientation="portrait"
             android:theme="@style/AppTheme.NoActionBar" />
         <activity
-            android:name=".Ui.Activities.CheckOutActivity"
+            android:name="com.balinasoft.mallione.Ui.Activities.CheckOutActivity"
             android:label="@string/order"
             android:screenOrientation="portrait"
             android:theme="@style/AppTheme.NoActionBar" />
         <activity
-            android:name=".Ui.Activities.DispatcherActivity"
+            android:name="com.balinasoft.mallione.Ui.Activities.DispatcherActivity"
             android:label="@string/title_activity_dispatcher"
             android:theme="@style/AppTheme.NoActionBar"
             android:screenOrientation="portrait"></activity>

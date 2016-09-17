@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<com.balinasoft.minimarket.Utils.DisableableCoordinatorLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<com.balinasoft.mallione.Utils.DisableableCoordinatorLayout xmlns:android="http://schemas.android.com/apk/res/android"
    android:id="@+id/buyerActivity.coordinator"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
@@ -50,12 +50,17 @@
 
 
     </android.support.design.widget.AppBarLayout>
-
+    <com.orangegangsters.github.swipyrefreshlayout.library.SwipyRefreshLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/buyerActivity.swipe"
+        app:srl_direction="bottom"
+        app:layout_behavior="@string/appbar_scrolling_view_behavior">
     <android.support.v4.widget.NestedScrollView
         android:id="@+id/buyerActivity.nestedScroll"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        app:layout_behavior="@string/appbar_scrolling_view_behavior"
+
         android:clipToPadding="true">
 
         <FrameLayout
@@ -66,9 +71,10 @@
 
         </FrameLayout>
     </android.support.v4.widget.NestedScrollView>
+    </com.orangegangsters.github.swipyrefreshlayout.library.SwipyRefreshLayout>
     <FrameLayout
         android:id="@+id/buyerActivity.frameContainerNonCollapse"
         app:layout_behavior="@string/appbar_scrolling_view_behavior"
         android:layout_width="match_parent"
         android:layout_height="match_parent"></FrameLayout>
-</com.balinasoft.minimarket.Utils.DisableableCoordinatorLayout>
+</com.balinasoft.mallione.Utils.DisableableCoordinatorLayout>

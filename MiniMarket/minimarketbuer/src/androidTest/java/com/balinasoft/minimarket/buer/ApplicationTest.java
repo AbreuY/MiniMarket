@@ -1,4 +1,4 @@
-package com.balinasoft.minimarket.buer;
+package com.balinasoft.mallione.buer;
 
 import android.app.Application;
 import android.test.ApplicationTestCase;

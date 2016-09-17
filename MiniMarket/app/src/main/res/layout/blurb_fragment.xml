@@ -14,8 +14,7 @@
             android:id="@+id/blurbFragment.ivBackground"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:scaleType="centerCrop"
-            android:tint="#7a000000" />
+            android:scaleType="centerCrop" />
 
         <LinearLayout
             android:layout_width="match_parent"
@@ -29,14 +28,16 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:textSize="24dp"
-                android:textStyle="bold" />
+                android:textStyle="bold"
+                android:textColor="#f69400" />
 
             <TextView
                 android:id="@+id/blurbFragment.tvSubTittle"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="8dp"
-                android:singleLine="true"/>
+                android:singleLine="true"
+                android:textColor="#FFF69400" />
         </LinearLayout>
 
 

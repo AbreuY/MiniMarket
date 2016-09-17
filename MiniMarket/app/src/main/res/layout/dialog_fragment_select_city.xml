@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="utf-8"?>
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:pickerui="http://schemas.android.com/apk/res-auto"
+
     android:layout_width="wrap_content"
     android:layout_height="wrap_content"
-    xmlns:app="http://schemas.android.com/tools"
+
     android:background="@drawable/background_view"
     android:orientation="vertical"
     android:padding="16dp">
@@ -31,7 +31,7 @@
             android:layout_gravity="center_horizontal"
             android:text="@string/selectCity" />
     </LinearLayout>
-    <com.balinasoft.minimarket.Ui.CustomViews.CustomNumberPicker
+    <com.balinasoft.mallione.Ui.CustomViews.CustomNumberPicker
         android:id="@+id/dialogFragmentSelectCity.picker"
         android:layout_below="@+id/dialogFragmentSelectCity.linearLayout"
         android:layout_margin="4dp"
@@ -40,7 +40,7 @@
         android:layout_height="wrap_content"
         android:solidColor="@android:color/white">
 
-    </com.balinasoft.minimarket.Ui.CustomViews.CustomNumberPicker>
+    </com.balinasoft.mallione.Ui.CustomViews.CustomNumberPicker>
 <RelativeLayout
     android:layout_width="match_parent"
     android:layout_height="wrap_content"

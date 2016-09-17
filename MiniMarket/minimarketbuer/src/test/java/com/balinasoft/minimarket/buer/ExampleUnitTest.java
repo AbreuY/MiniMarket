@@ -1,4 +1,4 @@
-package com.balinasoft.minimarket.buer;
+package com.balinasoft.mallione.buer;
 
 import org.junit.Test;
 

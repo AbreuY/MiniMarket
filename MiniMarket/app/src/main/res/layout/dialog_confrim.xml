@@ -30,7 +30,7 @@
         android:layout_marginLeft="8dp"
         android:textAllCaps="false"
         android:textColor="@color/white"/>
-    <com.balinasoft.minimarket.Ui.CustomViews.CustomNumberPicker
+    <com.balinasoft.mallione.Ui.CustomViews.CustomNumberPicker
         android:layout_width="150dp"
         android:layout_height="150dp"
         android:layout_marginTop="56dp"
@@ -40,7 +40,7 @@
         android:layout_alignLeft="@+id/dialogConfrim.btnDispatcher"
 
         android:layout_alignStart="@+id/dialogConfrim.btnDispatcher"
-        android:id="@+id/dialogConfrim.numPicker"></com.balinasoft.minimarket.Ui.CustomViews.CustomNumberPicker>
+        android:id="@+id/dialogConfrim.numPicker"></com.balinasoft.mallione.Ui.CustomViews.CustomNumberPicker>
 
     <Button
         android:layout_width="wrap_content"
