@@ -15,4 +15,5 @@ public class ResponseAnswer extends BaseResponse {
     }
 
     AnswerResult result;
+
 }

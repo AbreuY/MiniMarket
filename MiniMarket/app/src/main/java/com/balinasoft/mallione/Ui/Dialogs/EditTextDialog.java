@@ -30,8 +30,13 @@ public class EditTextDialog extends BaseDialog {
         this.title = title;
         return this;
     }
-
     String title;
+
+    public EditTextDialog setHint(String message) {
+        this.message = message;
+        return this;
+    }
+    String message;
 
     public EditTextDialog setTitleBtn(String titleBtn) {
         this.titleBtn = titleBtn;
@@ -42,10 +47,13 @@ public class EditTextDialog extends BaseDialog {
     @Nullable
     @Override
     public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
-        View v=inflater.inflate(R.layout.dialog_edit_text,null);
+        View v=inflater.inflate(R.layout.dialog_edit_text_message,null);
         initView(v);
         if(title!=null && !title.isEmpty()){
             tvTitle.setText(title);
+        }
+        if(message!=null && !message.isEmpty()){
+            edTx.setHint(message);
         }
         if(titleBtn!=null && !titleBtn.isEmpty()){
             btn.setText(titleBtn);

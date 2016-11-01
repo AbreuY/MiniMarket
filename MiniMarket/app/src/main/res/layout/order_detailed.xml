@@ -5,10 +5,23 @@
     xmlns:cardview="http://schemas.android.com/apk/res-auto"
     android:orientation="vertical">
 
+    <TextView
+        android:id="@+id/orderDetailed.tvTotalPrice"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true"
+        android:padding="16dp"
+        android:gravity="right"
+        android:textStyle="bold" />
+
     <android.support.v4.widget.NestedScrollView
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:layout_above="@+id/orderDetailed.tvTotalPrice">
+        android:layout_alignParentTop="true"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true">
 
         <LinearLayout
             android:layout_width="match_parent"
@@ -99,6 +112,18 @@
                         android:id="@+id/orderDetailed.tvStatusPaymanet"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content" />
+                    <View
+                        android:layout_width="match_parent"
+                        android:layout_height="1dp"
+                        android:layout_marginBottom="6dp"
+                        android:background="@color/divider_color2"
+                        android:id="@+id/orderDetailed.block" />
+
+                    <TextView
+                        android:id="@+id/orderDetailed.tvComment"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content" />
+
                 </LinearLayout>
             </android.support.v7.widget.CardView>
 
@@ -111,76 +136,73 @@
                     android:layout_height="wrap_content"
                     android:orientation="vertical"
                     android:padding="16dp">
-                    <TextView
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:text="@string/commentOrder"
-                        android:textSize="16dp"
-                        android:textStyle="bold"
-                        />
+
                     <Button
                         android:id="@+id/orderDetailed.btnShop"
                         android:layout_width="match_parent"
-                        android:layout_height="39dp"
-                        android:layout_marginBottom="8dp"
-                        android:layout_marginTop="6dp"
+                        android:layout_height="50dp"
                         android:background="@drawable/button_blue_background"
                         android:text="@string/ShowShopInfo"
                         android:textColor="@color/white"
-                        android:textAllCaps="false"/>
+                        android:textAllCaps="false"
+                        android:layout_margin="5dp" />
                     <Button
                         android:id="@+id/orderDetailed.btnAssess"
                         android:layout_width="match_parent"
-                        android:layout_height="39dp"
-                        android:layout_marginBottom="8dp"
+                        android:layout_height="50dp"
                         android:text="@string/feedBack"
                         android:textColor="@color/white"
                         android:textAllCaps="false"
-                        android:background="@drawable/button_blue_background"/>
+                        android:background="@drawable/button_blue_background"
+                        android:layout_margin="5dp" />
                     <Button
                         android:id="@+id/orderDetailed.btnDispute"
                         android:layout_width="match_parent"
-                        android:layout_height="39dp"
-                        android:layout_marginBottom="8dp"
+                        android:layout_height="50dp"
                         android:textColor="@color/white"
                         android:text="@string/openDispute"
                         android:textAllCaps="false"
-                        android:background="@drawable/button_blue_background"/>
+                        android:background="@drawable/button_blue_background"
+                        android:layout_margin="5dp" />
                     <Button
                         android:id="@+id/orderDetailed.btnConfrimOrder"
                         android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
+                        android:layout_height="50dp"
                         android:background="@drawable/button_blue_background"
                         android:text="@string/confrimOrder"
                         android:textColor="@color/white"
-                        android:textAllCaps="false"/>
+                        android:textAllCaps="false"
+                        android:layout_margin="5dp" />
                     <Button
                         android:id="@+id/orderDetailed.btnCancel"
                         android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
+                        android:layout_height="50dp"
                         android:layout_marginTop="6dp"
                         android:background="@drawable/button_blue_background"
                         android:text="@string/cancelOrder"
                         android:textColor="@color/white"
-                        android:textAllCaps="false"/>
+                        android:textAllCaps="false"
+                        android:layout_margin="5dp" />
                     <Button
                         android:id="@+id/orderDetailed.btnPickedUp"
                         android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
+                        android:layout_height="50dp"
                         android:layout_marginTop="6dp"
                         android:background="@drawable/button_blue_background"
                         android:text="@string/orderPicked"
                         android:textColor="@color/white"
-                        android:textAllCaps="false"/>
+                        android:textAllCaps="false"
+                        android:layout_margin="5dp" />
                     <Button
                         android:id="@+id/orderDetailed.btnOrderDelivered"
                         android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
                         android:layout_marginTop="6dp"
                         android:background="@drawable/button_blue_background"
                         android:text="@string/OrderDelivered"
                         android:textColor="@color/white"
-                        android:textAllCaps="false"/>/>
+                        android:textAllCaps="false"
+                        android:layout_height="50dp"
+                        android:layout_margin="5dp" />/>
 
                 </LinearLayout>
             </android.support.v7.widget.CardView>
@@ -197,15 +219,4 @@
             </android.support.v7.widget.CardView>
         </LinearLayout>
     </android.support.v4.widget.NestedScrollView>
-
-    <TextView
-        android:id="@+id/orderDetailed.tvTotalPrice"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_alignParentBottom="true"
-        android:layout_alignParentLeft="true"
-        android:layout_alignParentStart="true"
-        android:padding="16dp"
-        android:gravity="right"
-        android:textStyle="bold" />
 </RelativeLayout>

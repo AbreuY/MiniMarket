@@ -44,16 +44,17 @@ public class MyOrderFragment extends Basefragment {
     TabLayout tabLayout;
     RequestUserData userData;
     ShowFragmentListener showFragmentListener;
+
     @Override
     public void onAttach(Context context) {
         super.onAttach(context);
         toolbarListener = (ToolbarListener) getActivity();
-        showFragmentListener=(ShowFragmentListener)getActivity();
-        showFragmentListener.showFragmentToolBar(BlurbFragment.TAG,null);
+        showFragmentListener = (ShowFragmentListener) getActivity();
+        showFragmentListener.showFragmentToolBar(BlurbFragment.TAG, null);
         toolbarListener.setTittle(getString(R.string.myOrders));
         toolbarListener.closeToolbar();
-        userListener=(UserListener<? extends User>)getActivity();
-        userData=new RequestUserData(userListener.getUser().getSession_id(),userListener.getUser().getId());
+        userListener = (UserListener<? extends User>) getActivity();
+        userData = new RequestUserData(userListener.getUser().getSession_id(), userListener.getUser().getId());
 
     }
 
@@ -82,13 +83,18 @@ public class MyOrderFragment extends Basefragment {
         progressBar = (ProgressBar) v.findViewById(R.id.myOrderFragment_progressBar);
         tabLayout = (TabLayout) v.findViewById(R.id.myOrderFragment_tabs);
     }
-    public void addData(){
+
+    public void addData() {
         getService().orders(userData).enqueue(new MyCallbackWithMessageError<ResponseOrders>() {
             @Override
             public void onData(ResponseOrders data) {
-                pagerAdapter.addFrag(FragmentRecyclerView.newInstance(data.getResult().getActive()), getString(R.string.current));
-                pagerAdapter.addFrag(FragmentRecyclerView.newInstance(data.getResult().getComplete()), getString(R.string.finished));
-                if(MyOrderFragment.this.isAdded()) {
+                try {
+                    pagerAdapter.addFrag(FragmentRecyclerView.newInstance(data.getResult().getActive()), getString(R.string.current));
+                    pagerAdapter.addFrag(FragmentRecyclerView.newInstance(data.getResult().getComplete()), getString(R.string.finished));
+                } catch (Exception e) {
+                    e.printStackTrace();
+                }
+                if (MyOrderFragment.this.isAdded()) {
                     viewPager.setAdapter(pagerAdapter);
                     tabLayout.setupWithViewPager(viewPager);
                 }
@@ -100,6 +106,7 @@ public class MyOrderFragment extends Basefragment {
             }
         });
     }
+
     public static class PagerAdapter extends FragmentPagerAdapter {
         private final List<Fragment> mFragmentList = new ArrayList<>();
         private final List<String> mFragmentTitleList = new ArrayList<>();
@@ -143,30 +150,31 @@ public class MyOrderFragment extends Basefragment {
 
         RecyclerView recyclerView;
         ShowFragmentListener showFragmentListener;
+
         @Override
         public void onAttach(Context context) {
             super.onAttach(context);
-            showFragmentListener=(ShowFragmentListener)getActivity();
+            showFragmentListener = (ShowFragmentListener) getActivity();
         }
 
         @Override
         public void onCreate(@Nullable Bundle savedInstanceState) {
             super.onCreate(savedInstanceState);
-            adapterOrders=new AdapterOrders(getActivity(), orders);
+            adapterOrders = new AdapterOrders(getActivity(), orders);
             adapterOrders.setClickItemListener(new AdapterOrders.ClickItemListener() {
                 @Override
                 public void clickItemImage(Order order) {
-                    Intent intent=new Intent(getActivity(), BasketItemsActivity.class);
-                    intent.putExtra(Order.class.getCanonicalName(),order);
+                    Intent intent = new Intent(getActivity(), BasketItemsActivity.class);
+                    intent.putExtra(Order.class.getCanonicalName(), order);
                     getActivity().startActivity(intent);
                 }
 
                 @Override
                 public void clickItemBtn(Order order) {
-                    assessDialog=new AssessDialog();
+                    assessDialog = new AssessDialog();
                     assessDialog.setOrder(order);
                     assessDialog.setTypeAssess(AssessDialog.ORDER);
-                    assessDialog.show(getFragmentManager(),"");
+                    assessDialog.show(getFragmentManager(), "");
                 }
 
             });

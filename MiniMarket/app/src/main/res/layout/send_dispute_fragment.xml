@@ -17,7 +17,7 @@
 
     <Button
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
+        android:layout_height="50dp"
         android:text="@string/addphoto"
         android:id="@+id/sendDisputeFragment.btnAddphoto"
         android:layout_gravity="center_horizontal"
@@ -38,7 +38,7 @@
         android:id="@+id/sendDisputeFragment.recyclerView"></android.support.v7.widget.RecyclerView>
     <Button
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
+        android:layout_height="50dp"
         android:layout_alignParentBottom="true"
         android:layout_alignParentLeft="true"
         android:layout_alignParentStart="true"

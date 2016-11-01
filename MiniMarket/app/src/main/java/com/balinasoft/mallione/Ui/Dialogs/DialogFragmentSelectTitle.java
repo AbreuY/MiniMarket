@@ -1,6 +1,7 @@
 package com.balinasoft.mallione.Ui.Dialogs;
 
 
+import android.app.Activity;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.view.LayoutInflater;
@@ -104,18 +105,19 @@ public class DialogFragmentSelectTitle extends BaseDialog {
         this.titles = titles;
     }
 
-    ArrayList<? extends Title> titles=new ArrayList<>();
+    ArrayList<? extends Title> titles = new ArrayList<>();
+
     @Nullable
     @Override
     public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         super.onCreateView(inflater, container, savedInstanceState);
         View v = inflater.inflate(R.layout.dialog_fragment_select_city, null);
         initView(v);
-        if(titles.size()>0){
+        if (titles.size() > 0) {
             setItems(titles);
         }
-        setVisibleTextView(title,tvTitle);
-        setVisibleTextView(subTitle,tvSubTitle);
+        setVisibleTextView(title, tvTitle);
+        setVisibleTextView(subTitle, tvSubTitle);
 
         btnOk.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -148,15 +150,21 @@ public class DialogFragmentSelectTitle extends BaseDialog {
         tvSubTitle = (TextView) v.findViewById(R.id.dialogFragmentSelectCity_subTitle);
     }
 
+    @Override
+    public void onAttach(Activity activity) {
+        super.onAttach(activity);
+    }
+
     public void setItems(ArrayList<? extends Title> titles) {
-            customNumberPicker.setTitles(titles);
-            customNumberPicker.setSelectorWheel(isWheel());
+        customNumberPicker.setTitles(titles);
+        customNumberPicker.setSelectorWheel(isWheel());
 
 
     }
-    private void setVisibleTextView(String s,TextView textView){
-        if(s!=null && !s.isEmpty()){
+
+    private void setVisibleTextView(String s, TextView textView) {
+        if (s != null && !s.isEmpty()) {
             textView.setText(s);
-        }else textView.setVisibility(View.GONE);
+        } else textView.setVisibility(View.GONE);
     }
 }

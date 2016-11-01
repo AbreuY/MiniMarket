@@ -40,6 +40,9 @@ public class Order implements Parcelable{
         date_time_end = in.readString();
     }
 
+    public Order() {
+    }
+
     @Override
     public void writeToParcel(Parcel dest, int flags) {
         dest.writeString(date_time_start);

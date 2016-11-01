@@ -46,7 +46,9 @@ public class CustomNumberPicker extends NumberPicker {
         return (ArrayList<Title>) titles;
     }
 
-    public void setTitles(ArrayList<? extends Title> titles) {
+
+    public boolean setTitles(ArrayList<? extends Title> titles) {
+
         setDisplayedValues(null);
         if (titles != null && titles.size() > 0) {
             setMinValue(0);
@@ -61,13 +63,14 @@ public class CustomNumberPicker extends NumberPicker {
                 this.titles.add(new Title() {
                     @Override
                     public String getTitle() {
-                        return " ";
+                        return " Пусто ";
                     }
                 });
             setMinValue(0);
-            setMaxValue(1);
+            setMaxValue(0);
             setDisplayedValues();
         }
+        return true;
     }
 
     public void addTitles(ArrayList<? extends Title> titles) {
@@ -108,6 +111,7 @@ public class CustomNumberPicker extends NumberPicker {
             } else break;
             i++;
         }
+
         setWrapSelectorWheel(isWheel());
         super.setDisplayedValues(values);
 
@@ -132,11 +136,11 @@ public class CustomNumberPicker extends NumberPicker {
             @Override
             public void onValueChange(NumberPicker picker, int oldVal, int newVal) {
 
-                if (newVal == titles.size() - 1 && fistItemListener!=null) {
+                if (newVal == titles.size() - 1 && fistItemListener != null) {
 
                     fistItemListener.onFistItem();
                 }
-                if (getMaxValue() >=(newVal-1) && (newVal) >=getMinValue() && selectListener!=null)
+                if (getMaxValue() >= (newVal - 1) && (newVal) >= getMinValue() && selectListener != null)
                     selectListener.onSelect(titles.get(newVal));
 
             }

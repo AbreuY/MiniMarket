@@ -30,6 +30,7 @@ import com.balinasoft.mallione.Ui.Fragments.MyFavoritesFragment;
 import com.balinasoft.mallione.Ui.Fragments.MyOrderFragment;
 import com.balinasoft.mallione.Ui.Fragments.MyServicesFragment;
 import com.balinasoft.mallione.Ui.Fragments.NavHeaderFragment;
+import com.balinasoft.mallione.Ui.Fragments.NavHeaderManagerFragment;
 import com.balinasoft.mallione.Ui.Fragments.NotificationFragment;
 import com.balinasoft.mallione.Ui.Fragments.PageItemFragment;
 import com.balinasoft.mallione.Ui.Fragments.PagerBlurbFragment;
@@ -65,14 +66,13 @@ import com.orangegangsters.github.swipyrefreshlayout.library.SwipyRefreshLayout;
 
 public class ManagerActivity extends AppCompatActivity
         implements NavigationView.OnNavigationItemSelectedListener,Swipeable,ToolbarSettingsListener,ToolbarListener, MenuAdapterRecyclerView.OnMenuItemClickListener, ShowFragmentListener, UserListener<User> {
-    NavHeaderFragment headerFragment = new NavHeaderFragment();
+    NavHeaderManagerFragment headerFragment = new NavHeaderManagerFragment();
     Manager manager;
     private AppBarLayout appBarLayout;
     private SwipyRefreshLayout swipyRefreshLayout;
 
     @Override
     protected void onStart() {
-        super.onStart();
         headerFragment.setLoginListener(new NavHeaderFragment.StartActivityLoginUser(this));
         new AuthManager(this).setExtractListener(new AuthManager.ExtractListener() {
             @Override
@@ -100,6 +100,8 @@ public class ManagerActivity extends AppCompatActivity
 
             }
         }).extract();
+        super.onStart();
+
     }
 
     @Override
@@ -392,4 +394,29 @@ public class ManagerActivity extends AppCompatActivity
     public SwipyRefreshLayout getSwipyRefreshLayout() {
         return swipyRefreshLayout;
     }
+
+
+    @Override
+    protected void onResume() {
+        try {
+            Bundle extras = getIntent().getExtras();
+            if (extras.getString("extra").equals("sendNotification")) {
+                getIntent().removeExtra("extra");
+                clearFragmentManager();
+                showFragment(NotificationFragment.TAG, null, false);
+                DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
+                drawer.closeDrawer(GravityCompat.START);
+            }
+        } catch (Exception e) {
+        }
+        super.onResume();
+    }
+
+    public void clearFragmentManager() {
+        for (int i = 0; i < getSupportFragmentManager().getBackStackEntryCount(); i++) {
+            getSupportFragmentManager().popBackStack();
+            getSupportFragmentManager().executePendingTransactions();
+        }
+    }
+
 }

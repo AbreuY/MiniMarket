@@ -15,7 +15,19 @@ public class Notification {
     private String order_id;
 
     private String record_id;
+
     private String date_time;
+
+
+    public String getId() {
+        return id;
+    }
+
+    public void setId(String id) {
+        this.id = id;
+    }
+
+    private String id;
 
     public Shop getShop() {
         return shop;

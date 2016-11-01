@@ -1,6 +1,9 @@
 package com.balinasoft.mallione.Ui.Fragments;
 
 import android.content.Context;
+import android.content.SharedPreferences;
+import android.content.SharedPreferences.Editor;
+import android.graphics.Color;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.view.LayoutInflater;
@@ -21,41 +24,79 @@ import com.balinasoft.mallione.networking.Response.BaseResponse;
 public class NavHeaderCourierFragment extends Basefragment {
     RequestCourierStatus request=new RequestCourierStatus();
     UserListener<Courier> userListener;
+    SharedPreferences sharedPreferences;
     @Override
     public void onAttach(Context context) {
         super.onAttach(context);
         userListener=(UserListener<Courier>)getActivity();
         request.setC_status(userListener.getUser().getC_status());
         request.setSession_id(userListener.getUser().getSession_id());
-        request.setCourier_id(String.valueOf(userListener.getUser().getId()));
+        request.setUserId(String.valueOf(userListener.getUser().getId()));
     }
 
     @Nullable
     @Override
     public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
+
         View v = inflater.inflate(R.layout.nav_courier, null);
         intiView(v);
+        btnStatus.setBackgroundResource(R.drawable.bg_empty);
 
-        if(userListener.getUser().getC_status().equals("1")){
+        sharedPreferences = getActivity().getPreferences(getActivity().MODE_PRIVATE);
+
+        if (sharedPreferences.getString("c_status", "").equals("1")) {
             btnStatus.setText(getString(R.string.available));
-        }else {
+            btnStatus.setTextColor(Color.GREEN);
+            request.setC_status("0");
+        } else if (sharedPreferences.getString("c_status", "").equals("0")) {
             btnStatus.setText(getString(R.string.notAvailable));
+            btnStatus.setTextColor(Color.RED);
+            request.setC_status("1");
+        } else {
+            btnStatus.setTextColor(Color.BLACK);
+            request.setC_status("0");
         }
+
+
         btnStatus.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                if(userListener.getUser().getC_status().equals("1")){
-                    request.setC_status("0");
-                    userListener.getUser().setC_status(request.getC_status());
-                    btnStatus.setText(getString(R.string.notAvailable));
-                }else {
-                    btnStatus.setText(getString(R.string.available));
-                    request.setC_status("1");
-                    userListener.getUser().setC_status(request.getC_status());
-                }
+
                 getService().setCourierStatus(request).enqueue(new MyCallbackWithMessageError<BaseResponse>() {
                     @Override
                     public void onData(BaseResponse data) {
+                        if (data.isSuccess()) {
+
+
+                            if (request.getC_status().equals("0")) { //если отправили оффлайн
+
+                                //if (userListener.getUser().getC_status().equals("1")) { //если мы были онлайн
+                                btnStatus.setText(getString(R.string.notAvailable));
+                                btnStatus.setTextColor(Color.RED); //то нарисуем оффлайн
+                                //  }
+                                userListener.getUser().setC_status("0"); //МЫ ОФФЛАЙН
+                                request.setC_status("1"); //на будущее, если мы захотим отправить запрос на изменение статуса
+
+                                sharedPreferences = getActivity().getPreferences(getActivity().MODE_PRIVATE);
+                                Editor ed = sharedPreferences.edit();
+                                ed.putString("c_status", userListener.getUser().getC_status());
+                                ed.commit();
+                            } else if (request.getC_status().equals("1")) { //если отправили онлайн
+
+                                // if (userListener.getUser().getC_status().equals("0")) { //если мы были оффлайн
+                                btnStatus.setText(getString(R.string.available));
+                                btnStatus.setTextColor(Color.GREEN); //то нарисуем онлайн
+                                //}
+                                userListener.getUser().setC_status("1"); //МЫ ОНЛАЙН
+                                request.setC_status("0"); //на будущее, если мы захотим отправить запрос на изменение статуса
+
+                                sharedPreferences = getActivity().getPreferences(getActivity().MODE_PRIVATE);
+                                Editor ed = sharedPreferences.edit();
+                                ed.putString("c_status", userListener.getUser().getC_status());
+                                ed.commit();
+                            }
+
+                        }
 
                     }
 
@@ -70,6 +111,7 @@ public class NavHeaderCourierFragment extends Basefragment {
     }
 
     Button btnStatus;
+
     NavHeaderFragment headerFragment=new NavHeaderFragment();
     private void intiView(View v) {
         btnStatus = (Button) v.findViewById(R.id.navCourier_btnStatus);

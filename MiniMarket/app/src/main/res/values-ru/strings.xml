@@ -68,7 +68,7 @@
     <string name="deleteItem">Удалить продукт?</string>
     <string name="order">Оформить заказ</string>
     <string name="checkout">Проверка</string>
-    <string name="OrderDelivery">Заказать доставку по адресу:</string>
+    <string name="OrderDelivery">Заказать доставку по адресу</string>
     <string name="addressText">В случае указания полного адреса(этаж,подьезд,домофон или код) курьеру не нужно  будет уточнять его допольнительно.</string>
     <string name="selectDate">Укажите дату и время</string>
     <string name="selectPayment">Укажите способ платежа</string>
@@ -77,7 +77,7 @@
     <string name="confrim">Подтвердить</string>
     <string name="totalPrice">Общая сумма:</string>
     <string name="hintAddress">Улица, номер дома, номер квартиры, этаж</string>
-    <string name="date">Дата:</string>
+    <string name="date">Дата</string>
     <string name="time">Время</string>
     <string name="enterAddress">Введите адрес</string>
     <string name="enterDate">Введите дату</string>
@@ -115,7 +115,7 @@
     <string name="orders">Заказы</string>
     <string name="record">Услуги</string>
     <string name="disputs">Споры</string>
-    <string name="status">Status:</string>
+    <string name="status">Статус:</string>
     <string name="disput">Спор</string>
     <string name="closeDispute">Закрыть спор</string>
     <string name="enterMessage">Введите сообщение</string>
@@ -128,8 +128,8 @@
     <string name="takePhoto">Сделать фото</string>
     <string name="chooseGallery">Из галереи</string>
     <string name="theme">Тема</string>
-    <string name="available">Свободен</string>
-    <string name="notAvailable">Занят</string>
+    <string name="available">Онлайн</string>
+    <string name="notAvailable">Оффлайн</string>
     <string name="orderPicked">Заказ взят на руки</string>
     <string name="OrderDelivered">Заказ доставлен</string>
     <string name="nameOrg">Название организации</string>
@@ -139,5 +139,11 @@
     <string name="couriers">Курьеры</string>
     <string name="backCategory">Назад в категории</string>
     <string name="selectCouriers">Выберите курьера</string>
-
+    <string name="passRecovery">Введите E-Mail</string>
+    <string name="goToOrder">Перейти в заказ</string>
+    <string name="onlineOrOffline">"Стать Онлайн/Оффлайн"</string>
+    <string name="OrderPayment">Оплата заказа</string>
+    <string name="taxi">Такси</string>
+    <string name="DeliveryTime">Время выполнения заказа:</string>
+    <string name="AddPhoto">Добавить фото</string>
 </resources>

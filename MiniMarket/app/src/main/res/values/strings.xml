@@ -69,7 +69,7 @@
     <string name="deleteItem">Delete product?</string>
     <string name="order">Order</string>
     <string name="checkout">checkout</string>
-    <string name="OrderDelivery">Order delivery at:</string>
+    <string name="OrderDelivery">Order delivery at</string>
     <string name="addressText">If you specify a full address (ground floor, entrance, intercom system or code) bkureru not need to specify its Additional.</string>
     <string name="selectDate">Select date and time</string>
     <string name="selectPayment">Select payment method</string>
@@ -78,7 +78,7 @@
     <string name="confrim">Confrim</string>
     <string name="totalPrice">Total price</string>
     <string name="hintAddress">Street, Number home, Number room, level</string>
-    <string name="date">Date:</string>
+    <string name="date">Date</string>
     <string name="time">Time</string>
     <string name="enterAddress">Enter address</string>
     <string name="enterDate">Enter date</string>
@@ -129,8 +129,8 @@
     <string name="takePhoto">Take photo</string>
     <string name="chooseGallery">Choose gallery</string>
     <string name="theme">Theme</string>
-    <string name="available">Available</string>
-    <string name="notAvailable">Not available</string>
+    <string name="available">Online</string>
+    <string name="notAvailable">Offline</string>
     <string name="orderPicked">picked up the order</string>
     <string name="OrderDelivered">Order delivered</string>
     <string name="nameOrg">Name organization</string>
@@ -141,4 +141,27 @@
     <string name="couriers">Couriers</string>
     <string name="backCategory">Back category</string>
     <string name="selectCouriers">Select courier</string>
+    <string name="passRecovery">Enter your E-Mail</string>
+    <string name="goToOrder">Go to order</string>
+    <string name="onlineOrOffline">"Become Online/Offline"</string>
+    <string name="OrderPayment">Order payment</string>
+    <string name="taxi">Taxi</string>
+    <string name="DeliveryTime">Delivery time:</string>
+    <string name="AddPhoto">Add photo</string>
+    <string name="ask_for_camera_permission_button">Camera</string>
+    <string name="ask_for_contacts_permission_button">Contacts</string>
+    <string name="ask_for_audio_permission_button">Audio</string>
+    <string name="ask_for_all_permissions_button">Request all</string>
+    <string name="permission_granted_feedback">GRANTED</string>
+    <string name="permission_denied_feedback">DENIED</string>
+    <string name="permission_permanently_denied_feedback">PERMANENTLY DENIED</string>
+    <string name="permission_unknown_feedback">UNKNOWN</string>
+    <string name="all_permissions_denied_feedback">All those permissions are needed for doing some magic</string>
+    <string name="camera_permission_denied_feedback">Camera permission is needed for doing some magic</string>
+    <string name="contacts_permission_denied_feedback">Contacts permission is needed for doing some magic</string>
+    <string name="audio_permission_denied_dialog_title">Запрос на доступ к файловой системе</string>
+    <string name="audio_permission_denied_dialog_feedback">Доступ к файловой системе запрещен</string>
+    <string name="permission_rationale_title">We need this permission</string>
+    <string name="permission_rationale_message">This permission is needed for doing some fancy stuff so please, allow it!</string>
+    <string name="permission_rationale_settings_button_text">SETTINGS</string>
 </resources>

@@ -162,6 +162,7 @@ public class AuthManager {
     private Manager extractManager() {
         Manager manager = new Manager();
         extractFieldsUser(manager);
+        manager.setC_status(sharedPreferences.getString("c_status", ""));
         return manager;
     }
 

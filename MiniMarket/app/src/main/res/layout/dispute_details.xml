@@ -18,19 +18,35 @@
         android:layout_centerHorizontal="true" />
 <RelativeLayout
     android:layout_width="match_parent"
-    android:layout_height="wrap_content"
     android:orientation="horizontal"
     android:layout_alignParentBottom="true"
     android:layout_alignParentLeft="true"
     android:layout_alignParentStart="true"
-    android:id="@+id/linearLayout3">
-   <Button
+    android:id="@+id/linearLayout3"
+    android:padding="16dp"
+    android:layout_height="152dp">
+
+    <Button
+        android:text="@string/goToOrder"
+        android:layout_width="match_parent"
+        android:layout_height="50dp"
+        android:id="@+id/disputeDetails.btnGoToOrder"
+        android:layout_alignParentTop="true"
+        android:layout_centerHorizontal="true"
+        android:background="@drawable/button_blue_background"
+        android:textColor="@color/white"
+        android:layout_margin="5dp" />
+
+    <Button
        android:layout_width="match_parent"
-       android:layout_height="wrap_content"
+       android:layout_height="50dp"
        android:text="@string/closeDispute"
        android:textColor="@color/white"
        android:background="@drawable/button_blue_background"
        android:id="@+id/disputeDetails.btnCloseDispute"
-       android:layout_margin="8dp"/>
+        android:layout_alignParentBottom="true"
+        android:layout_alignParentRight="true"
+        android:layout_alignParentEnd="true"
+        android:layout_margin="5dp" />
 </RelativeLayout>
 </RelativeLayout>

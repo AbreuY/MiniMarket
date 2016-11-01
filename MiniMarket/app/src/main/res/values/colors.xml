@@ -24,5 +24,6 @@
     <color name="white">#fff</color>
     <color name="blueAlpha">#8b3a7bde</color>
     <color name="color_end" >#626466</color>
+    <color name="color_red" >#ff0000</color>
 
 </resources>

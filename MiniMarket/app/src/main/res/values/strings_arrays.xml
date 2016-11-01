@@ -5,6 +5,7 @@
         <item>@string/profile</item>
         <item>@string/basket</item>
         <item>@string/myOrders</item>
+        <item>@string/disputs</item>
         <item>@string/myServices</item>
         <item>@string/myFavorites</item>
         <item>@string/notifications</item>

@@ -38,6 +38,6 @@ public class DispatcherFio extends Dispatcher implements Parcelable{
 
     @Override
     public String getTitle() {
-        return getFio();
+        return getO_organization();
     }
 }

@@ -58,7 +58,7 @@ public class CourierFormFragment extends Basefragment implements RegistrationFor
         edTxTINTaxpayer.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                dialogFragmentSelectDispatcher.show(getFragmentManager(),"dsgfd");
+                dialogFragmentSelectDispatcher.show(getFragmentManager(),"fdsf");
                 getService().dispatchers().enqueue(new MyCallbackWithMessageError<ResponseDispatchers>() {
                     @Override
                     public void onData(ResponseDispatchers data) {

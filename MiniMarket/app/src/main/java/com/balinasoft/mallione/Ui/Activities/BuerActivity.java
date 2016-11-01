@@ -23,6 +23,7 @@ import com.balinasoft.mallione.Ui.Dialogs.DialogItemFragment;
 import com.balinasoft.mallione.Ui.Dialogs.DialogSearch;
 import com.balinasoft.mallione.Ui.Fragments.BasketFragment;
 import com.balinasoft.mallione.Ui.Fragments.BlurbFragment;
+import com.balinasoft.mallione.Ui.Fragments.DisputsFragment;
 import com.balinasoft.mallione.Ui.Fragments.ItemFragment;
 import com.balinasoft.mallione.Ui.Fragments.ItemsBasketFragment;
 import com.balinasoft.mallione.Ui.Fragments.ItemsFragment;
@@ -60,6 +61,7 @@ import com.balinasoft.mallione.networking.ApiFactory;
 import com.balinasoft.mallione.networking.MyCallbackWithMessageError;
 import com.balinasoft.mallione.networking.Request.RequestCountNotification;
 import com.balinasoft.mallione.networking.Response.ResponseCountNotification;
+import com.balinasoft.mallione.networking.Services.MyFirebaseMessagingService;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.database.DatabaseReference;
@@ -67,7 +69,7 @@ import com.orangegangsters.github.swipyrefreshlayout.library.SwipyRefreshLayout;
 
 
 public class BuerActivity extends AppCompatActivity
-        implements MenuAdapterRecyclerView.OnMenuItemClickListener, MenuListener,Swipeable, ShowFragmentListener,ToolbarSettingsListener, ToolbarListener, UserListener<Buer> {
+        implements MenuAdapterRecyclerView.OnMenuItemClickListener, MenuListener, Swipeable, ShowFragmentListener, ToolbarSettingsListener, ToolbarListener, UserListener<Buer> {
     Buer buer;
     NavHeaderFragment headerFragment = new NavHeaderFragment();
     MenuFragment menuFragment;
@@ -75,11 +77,10 @@ public class BuerActivity extends AppCompatActivity
     private AppBarLayout appBarLayout;
     private DisableableCoordinatorLayout coordinator;
     private SwipyRefreshLayout swipyRefreshLayout;
+
     @Override
     protected void onStart() {
         super.onStart();
-
-
     }
 
     FirebaseAuth firebaseAuth;
@@ -96,7 +97,7 @@ public class BuerActivity extends AppCompatActivity
         collapsingToolbarLayout = (CollapsingToolbarLayout) findViewById(R.id.buyerActivity_collapsing_toolbar);
         appBarLayout = (AppBarLayout) findViewById(R.id.buyerActivity_app_bar_layout);
         coordinator = (DisableableCoordinatorLayout) findViewById(R.id.buyerActivity_coordinator);
-        swipyRefreshLayout=(SwipyRefreshLayout)findViewById(R.id.buyerActivity_swipe);
+        swipyRefreshLayout = (SwipyRefreshLayout) findViewById(R.id.buyerActivity_swipe);
         new AuthManager(this).setExtractListener(new AuthManager.SimpleExtractListener() {
             @Override
             public void onEmpty() {
@@ -134,6 +135,7 @@ public class BuerActivity extends AppCompatActivity
 
                     }
                 });
+
             }
         });
         getSupportFragmentManager().beginTransaction().replace(R.id.buyerActivity_navFrame, headerFragment).commit();
@@ -150,28 +152,29 @@ public class BuerActivity extends AppCompatActivity
 
                 new Basket().put(superProductItem, superProductItem.getShop_id());
             }
-           final ShowFragmentNotification showFragmentNotification=new ShowFragmentNotification(getIntent(),this) {
-               @Override
-               public void order(Intent intent) {
-                   startActivity(intent);
-               }
+            final ShowFragmentNotification showFragmentNotification = new ShowFragmentNotification(getIntent(), this) {
+                @Override
+                public void order(Intent intent) {
+                    startActivity(intent);
+                }
 
-               @Override
-               public void record(Bundle bundle) {
-                    showFragment(MyServicesFragment.TAG,bundle,false);
-               }
+                @Override
+                public void record(Bundle bundle) {
+                    showFragment(MyServicesFragment.TAG, bundle, false);
+                }
 
-               @Override
-               public void shop(Intent intent) {
-                   startActivity(intent);
-               }
+                @Override
+                public void shop(Intent intent) {
+                    startActivity(intent);
+                }
 
-               @Override
-               public void item(Bundle bundle) {
+                @Override
+                public void item(Bundle bundle) {
 
-               }
-           };
+                }
+            };
         }
+
 
     }
 
@@ -193,7 +196,8 @@ public class BuerActivity extends AppCompatActivity
     }
 
     DialogSearch dialogSearch = new DialogSearch();
-    DialogItemFragment dialogItemFragment=new DialogItemFragment();
+    DialogItemFragment dialogItemFragment = new DialogItemFragment();
+
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
         // Handle action bar item clicks here. The action bar will
@@ -203,7 +207,7 @@ public class BuerActivity extends AppCompatActivity
 
         //noinspection SimplifiableIfStatement
         if (id == R.id.action_settings) {
-            dialogSearch=new DialogSearch();
+            dialogSearch = new DialogSearch();
             dialogSearch.setClickItemListener(new ItemsAdapterRecyclerView.ClickItemListener() {
                 @Override
                 public void onClick(final SuperProductItem productItem) {
@@ -213,10 +217,10 @@ public class BuerActivity extends AppCompatActivity
                             return productItem;
                         }
                     });
-                    dialogItemFragment.show(getSupportFragmentManager(),"");
+                    dialogItemFragment.show(getSupportFragmentManager(), "");
                 }
             });
-            dialogSearch.show(getSupportFragmentManager(),"");
+            dialogSearch.show(getSupportFragmentManager(), "");
 
             return true;
         }
@@ -229,7 +233,7 @@ public class BuerActivity extends AppCompatActivity
     @Override
     public boolean onMenuItemClick(ItemMenu item) {
 
-        clearFragmetManager();
+        clearFragmentManager();
 
         String nameMenu = item.getName();
         if (nameMenu.equals(getString(R.string.catalog))) {
@@ -254,7 +258,9 @@ public class BuerActivity extends AppCompatActivity
         if (nameMenu.equals(getString(R.string.notifications))) {
             showFragment(NotificationFragment.TAG, null, false);
         }
-
+        if (nameMenu.equals(getString(R.string.disputs))) {
+            showFragment(DisputsFragment.TAG, null, false);
+        }
         DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
         drawer.closeDrawer(GravityCompat.START);
         return true;
@@ -286,7 +292,16 @@ public class BuerActivity extends AppCompatActivity
     public void showFragment(String fragmentTag, Bundle data, boolean backStack) {
         Fragment fragment = getFragment(fragmentTag, data);
         FragmentTransaction fragmentManager = getSupportFragmentManager().beginTransaction();
-        fragmentManager.replace(R.id.buyerActivity_frameContainerNonCollapse, fragment).addToBackStack(null);
+        try {
+            fragmentManager.replace(R.id.buyerActivity_frameContainerNonCollapse, fragment).addToBackStack(null);
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        try {
+            getSupportFragmentManager().beginTransaction().replace(R.id.buyerActivity_frameContainerNonCollapse, getFragment(fragmentTag, data)).commit();
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
         fragmentManager.commit();
         findViewById(R.id.buyerActivity_frameContainerNonCollapse).setVisibility(View.VISIBLE);
         findViewById(R.id.buyerActivity_frameContainer).setVisibility(View.GONE);
@@ -349,6 +364,9 @@ public class BuerActivity extends AppCompatActivity
             case MyOrderFragment.TAG:
                 fragment = new MyOrderFragment();
                 break;
+            case DisputsFragment.TAG:
+                fragment = new DisputsFragment();
+                break;
         }
         if (data != null) {
             fragment.setArguments(data);
@@ -358,8 +376,12 @@ public class BuerActivity extends AppCompatActivity
 
     @Override
     public void setTittle(String tittle) {
-        collapsingToolbarLayout.setTitle(tittle);
-        collapsingToolbarLayout.setExpandedTitleMarginStart(MetricsUtil.convertDpToPixel(8, this));
+        try {
+            collapsingToolbarLayout.setTitle(tittle);
+            collapsingToolbarLayout.setExpandedTitleMarginStart(MetricsUtil.convertDpToPixel(8, this));
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
         //  collapsingToolbarLayout.setExpandedTitleTypeface(R.style.CollapsedAppBar);
         //  collapsingToolbarLayout.setCollapsedTitleTextAppearance(R.style.CollapsedAppBar);
     }
@@ -377,11 +399,15 @@ public class BuerActivity extends AppCompatActivity
 
     @Override
     public void closeToolbar() {
-        ((AppBarLayout) findViewById(R.id.buyerActivity_app_bar_layout)).setExpanded(false, true);
-        coordinator.setPassScrolling(false);
+        try {
+            ((AppBarLayout) findViewById(R.id.buyerActivity_app_bar_layout)).setExpanded(false, true);
+            coordinator.setPassScrolling(false);
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
     }
 
-    public void clearFragmetManager() {
+    public void clearFragmentManager() {
         for (int i = 0; i < getSupportFragmentManager().getBackStackEntryCount(); i++) {
             getSupportFragmentManager().popBackStack();
             getSupportFragmentManager().executePendingTransactions();
@@ -400,6 +426,17 @@ public class BuerActivity extends AppCompatActivity
 
     @Override
     protected void onResume() {
+        try {
+            Bundle extras = getIntent().getExtras();
+            if (extras.getString("extra").equals(MyFirebaseMessagingService.ORDER)) {
+                getIntent().removeExtra("extra");
+                clearFragmentManager();
+                showFragment(MyOrderFragment.TAG, null, false);
+                DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
+                drawer.closeDrawer(GravityCompat.START);
+            }
+        } catch (Exception e) {
+        }
         super.onResume();
     }
 
@@ -418,4 +455,5 @@ public class BuerActivity extends AppCompatActivity
     public SwipyRefreshLayout getSwipyRefreshLayout() {
         return swipyRefreshLayout;
     }
+
 }

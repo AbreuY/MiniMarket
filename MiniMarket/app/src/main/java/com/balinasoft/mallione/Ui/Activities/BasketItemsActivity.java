@@ -10,6 +10,7 @@ import android.support.v7.widget.Toolbar;
 import android.view.View;
 
 import com.balinasoft.mallione.R;
+import com.balinasoft.mallione.Ui.Fragments.BankFragment;
 import com.balinasoft.mallione.Ui.Fragments.CheckOutFragment;
 import com.balinasoft.mallione.Ui.Fragments.DisputeDetailsFragment;
 import com.balinasoft.mallione.Ui.Fragments.ItemsBasketFragment;
@@ -50,51 +51,52 @@ public class BasketItemsActivity extends AppCompatActivity implements ShowFragme
                 BasketItemsActivity.this.user = user;
             }
         }).extract();
-        if(getIntent().getParcelableExtra("DISPUTE_ORDER")!=null){
-            Order order=getIntent().getParcelableExtra("DISPUTE_ORDER");
-            Bundle bundle=new Bundle();
-            bundle.putParcelable(Order.class.getCanonicalName(),order);
-            showFragment(SendDisputeFragment.TAG,bundle,false);
+        if (getIntent().getParcelableExtra("DISPUTE_ORDER") != null) {
+            Order order = getIntent().getParcelableExtra("DISPUTE_ORDER");
+            Bundle bundle = new Bundle();
+            bundle.putParcelable(Order.class.getCanonicalName(), order);
+            showFragment(SendDisputeFragment.TAG, bundle, false);
         }
         if (getIntent().getParcelableArrayListExtra("fireProduct") != null) {
             ArrayList<ProductFire> productFires = getIntent().getParcelableArrayListExtra("fireProduct");
             Bundle bundle = new Bundle();
             bundle.putParcelableArrayList("fireProduct", productFires);
+            bundle.putString("ORDER_ID", getIntent().getStringExtra("ORDER_ID"));
             showFragment(ItemsBasketFragment.TAG, bundle, false);
         }
-        if(getIntent().getStringExtra("ID_DISPUTE")!=null){
-            Bundle bundle=new Bundle();
-            bundle.putString("ID_DISPUTE",getIntent().getStringExtra("ID_DISPUTE"));
+        if (getIntent().getStringExtra("ID_DISPUTE") != null) {
+            Bundle bundle = new Bundle();
+            bundle.putString("ID_DISPUTE", getIntent().getStringExtra("ID_DISPUTE"));
 
-            showFragment(DisputeDetailsFragment.TAG,bundle,false);
+            showFragment(DisputeDetailsFragment.TAG, bundle, false);
         }
-        if(getIntent().getStringExtra("ORDER_ID")!=null){
-            Bundle bundle=new Bundle();
-            bundle.putString("ORDER_ID",getIntent().getStringExtra("ORDER_ID"));
-            showFragment(OrderDetailedFragment.TAG,bundle,false);
+        if (getIntent().getStringExtra("ORDER_ID") != null) {
+            Bundle bundle = new Bundle();
+            bundle.putString("ORDER_ID", getIntent().getStringExtra("ORDER_ID"));
+//            bundle.putParcelable(order)
+            showFragment(OrderDetailedFragment.TAG, bundle, false);
         }
 
         if (getIntent().getParcelableExtra(Order.class.getCanonicalName()) != null) {
 
-          ///  ApiFactory.getService().getFullOrder();
+            ///  ApiFactory.getService().getFullOrder();
 
             Order order = getIntent().getParcelableExtra(Order.class.getCanonicalName());
-            Bundle bundle=new Bundle();
-            bundle.putParcelable(Order.class.getCanonicalName(),order);
-            showFragment(OrderDetailedFragment.TAG,bundle,false);
+            Bundle bundle = new Bundle();
+            bundle.putParcelable(Order.class.getCanonicalName(), order);
+            showFragment(OrderDetailedFragment.TAG, bundle, false);
         }
-        if(getIntent().getParcelableExtra(Shop.class.getCanonicalName())!=null)
-        {
-            Shop shop=getIntent().getParcelableExtra(Shop.class.getCanonicalName());
+        if (getIntent().getParcelableExtra(Shop.class.getCanonicalName()) != null) {
+            Shop shop = getIntent().getParcelableExtra(Shop.class.getCanonicalName());
 
-            HashMap<String,String> hashMap= new HashMap<String, String>();
-            hashMap.put("shop_id",String.valueOf(shop.getId()));
+            HashMap<String, String> hashMap = new HashMap<String, String>();
+            hashMap.put("shop_id", String.valueOf(shop.getId()));
             ApiFactory.getService().shop(hashMap).enqueue(new MyCallbackWithMessageError<ResponseShop>() {
                 @Override
                 public void onData(ResponseShop data) {
-                    Bundle bundle=new Bundle();
-                    bundle.putParcelable(Shop.class.getCanonicalName(),data.getResult());
-                    showFragment(ShopInformation.TAG,bundle,false);
+                    Bundle bundle = new Bundle();
+                    bundle.putParcelable(Shop.class.getCanonicalName(), data.getResult());
+                    showFragment(ShopInformation.TAG, bundle, false);
                 }
 
                 @Override
@@ -149,13 +151,16 @@ public class BasketItemsActivity extends AppCompatActivity implements ShowFragme
                 fragment = new OrderDetailedFragment();
                 break;
             case ShopInformation.TAG:
-                fragment=new ShopInformation();
+                fragment = new ShopInformation();
                 break;
             case DisputeDetailsFragment.TAG:
-                fragment=new DisputeDetailsFragment();
+                fragment = new DisputeDetailsFragment();
                 break;
             case SendDisputeFragment.TAG:
-                fragment=new SendDisputeFragment();
+                fragment = new SendDisputeFragment();
+                break;
+            case BankFragment.TAG:
+                fragment = new BankFragment();
                 break;
         }
         if (data != null) {
@@ -169,7 +174,21 @@ public class BasketItemsActivity extends AppCompatActivity implements ShowFragme
 
     @Override
     public void onBackPressed() {
-        super.onBackPressed();
+//        FragmentManager fm = getSupportFragmentManager();
+//        OnBackPressedListener backPressedListener = null;
+//        for (Fragment fragment : fm.getFragments()) {
+//            if (fragment instanceof OnBackPressedListener) {
+//                backPressedListener = (OnBackPressedListener) fragment;
+//                break;
+//            }
+//        }
+//        int check = 0;
+//        if (backPressedListener != null) {
+//            check = backPressedListener.onBackPressed();
+//        }
+//        if (check == 1) {
+            super.onBackPressed();
+//        }
     }
 
     @Override

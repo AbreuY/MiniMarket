@@ -1,88 +1,120 @@
 <?xml version="1.0" encoding="utf-8"?>
 <FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
     android:orientation="vertical" android:layout_width="match_parent"
-    android:layout_height="wrap_content">
-    <ImageView
-        android:id="@+id/loginFragment.ivBackground"
+    android:layout_height="match_parent"
+    android:background="@drawable/background">
+
+    <ScrollView
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:scaleType="fitXY"
-        android:src="@drawable/background"/>
-    <RelativeLayout
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:padding="16dp">
-        <TextView
-            android:layout_marginTop="16dp"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="@string/App_name"
-            android:textSize="32dp"
-            android:layout_centerHorizontal="true"/>
-        <LinearLayout
-            android:id="@+id/loginFragment.linearLayoutForm"
+        android:layout_height="wrap_content">
+
+        <RelativeLayout
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_centerHorizontal="true"
-            android:layout_centerVertical="true"
-            android:orientation="vertical"
-            android:padding="16dp">
-            <EditText
-                android:id="@+id/loginFragment.edTxPhone"
+            android:padding="16dp"
+            android:layout_height="match_parent"
+            android:layout_gravity="top"
+            android:background="@drawable/background">
+
+            <LinearLayout
+                android:id="@+id/loginFragment.linearLayoutForm"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
-                android:hint="@string/nuberPhone"
-                android:inputType="phone"
-                android:imeOptions="actionNext"
-                android:gravity="center_horizontal" />
-            <EditText
-                android:id="@+id/loginFragment.edTxPassword"
+                android:orientation="vertical"
+                android:padding="16dp"
+                android:layout_alignParentLeft="true"
+                android:layout_alignParentStart="true">
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="@string/App_name"
+                    android:textSize="32dp"
+                    android:layout_gravity="top|center_horizontal"
+                    android:layout_centerHorizontal="true"
+                    android:textAlignment="center"
+                    android:layout_marginBottom="50dp"
+                    android:layout_marginTop="15dp" />
+
+                <EditText
+                    android:id="@+id/loginFragment.edTxPhone"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:hint="@string/nuberPhone"
+                    android:inputType="phone"
+                    android:imeOptions="actionNext"
+                    android:gravity="center_horizontal" />
+                <EditText
+                    android:id="@+id/loginFragment.edTxPassword"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:hint="@string/password"
+                    android:imeOptions="actionDone"
+                    android:gravity="center_horizontal"
+                    android:inputType="textPassword" />
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:orientation="vertical"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
-                android:hint="@string/password"
-                android:imeOptions="actionDone"
-                android:gravity="center_horizontal" />
-        </LinearLayout>
-        <Button
-            android:id="@+id/loginFragment.btnLogin"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="@string/login"
-            android:layout_below="@+id/loginFragment.linearLayoutForm"
-            android:layout_marginTop="1dp"
-            android:background="@drawable/button_background"
-            android:layout_centerHorizontal="true"
-            android:textAllCaps="false"
-            android:paddingLeft="16dp"
-            android:paddingRight="16dp" />
-        <TextView
-            android:id="@+id/loginFragment.tvForgotPassword"
-            android:layout_below="@+id/loginFragment.btnLogin"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_centerHorizontal="true"
-            android:text="@string/forgotPassword"
-            android:layout_marginTop="16dp" />
-        <LinearLayout
-            android:id="@+id/loginFragment.linearLayoutRegisterNow"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:orientation="vertical"
-            android:layout_alignParentBottom="true"
-            android:layout_alignParentLeft="true"
-            android:layout_alignParentStart="true">
-            <TextView
-                android:gravity="center_horizontal"
-                android:text="@string/haveAccount"
-                android:layout_width="wrap_content"
+                android:baselineAligned="false"
+                android:layout_below="@+id/loginFragment.btnLogin"
+                android:layout_alignParentLeft="true"
+                android:layout_alignParentStart="true"
+                android:layout_marginTop="19dp">
+
+                <TextView
+                    android:id="@+id/loginFragment.tvForgotPassword"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="@string/forgotPassword"
+                    android:layout_centerHorizontal="true"
+                    android:layout_gravity="center_horizontal"
+                    android:layout_margin="8dp"
+                    android:textAlignment="center" />
+
+                <LinearLayout
+                    android:id="@+id/loginFragment.linearLayoutRegisterNow"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:orientation="vertical"
+                    android:layout_gravity="center_horizontal|bottom"
+                    android:layout_alignParentLeft="true"
+                    android:layout_alignParentStart="true"
+                    android:textAlignment="center">
+                    <TextView
+                        android:gravity="center_horizontal"
+                        android:text="@string/haveAccount"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="center_horizontal"
+                        android:layout_margin="2dp" />
+                    <TextView
+                        android:gravity="center_horizontal"
+                        android:text="@string/registerNow"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="center_horizontal" />
+                </LinearLayout>
+            </LinearLayout>
+
+            <Button
+                android:id="@+id/loginFragment.btnLogin"
                 android:layout_height="wrap_content"
-                android:layout_gravity="center_horizontal" />
-            <TextView
-                android:gravity="center_horizontal"
-                android:text="@string/registerNow"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_gravity="center_horizontal" />
-        </LinearLayout>
-    </RelativeLayout>
+                android:text="@string/login"
+                android:background="@drawable/button_background"
+                android:textAllCaps="false"
+                android:paddingLeft="16dp"
+                android:paddingRight="16dp"
+                android:layout_gravity="center_horizontal"
+                android:textAlignment="center"
+                android:layout_width="200dp"
+                android:layout_below="@+id/loginFragment.linearLayoutForm"
+                android:layout_centerHorizontal="true" />
+
+        </RelativeLayout>
+    </ScrollView>
+
 </FrameLayout>

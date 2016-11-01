@@ -97,7 +97,8 @@ public class Dispatcher extends User implements Title,Parcelable
     @Override
     public String toString()
     {
-        return "ClassPojo [o_inn = "+o_inn+", dispatcher_id = "+dispatcher_id+"]";
+        return o_organization.toString();
+//        return "ClassPojo [o_inn = "+o_inn+", dispatcher_id = "+dispatcher_id+"]";
     }
 
     @Override

@@ -14,6 +14,7 @@ import android.widget.Button;
 import android.widget.ProgressBar;
 
 import com.balinasoft.mallione.R;
+import com.balinasoft.mallione.Ui.Activities.BasketItemsActivity;
 import com.balinasoft.mallione.Ui.Dialogs.EditTextDialog;
 import com.balinasoft.mallione.Ui.Dialogs.GestureViewDialog;
 import com.balinasoft.mallione.adapters.AdapterDispute;
@@ -39,6 +40,7 @@ public class DisputeDetailsFragment extends Basefragment {
     AdapterDispute adapterDispute;
     UserListener<? extends User> userListener;
     ToolbarListener toolbarListener;
+    String order_id;
 
     @Override
     public void onAttach(Context context) {
@@ -95,6 +97,7 @@ public class DisputeDetailsFragment extends Basefragment {
                 @Override
                 public void onData(ResponseDisput data) {
                     toolbarListener.setTittle(getString(R.string.disput) + " №" + data.getResult().getId());
+                    order_id = data.getResult().getOrder_id();
                     adapterDispute.setDispute(data.getResult());
                     if(!data.getResult().isOpen()){
                         btnClose.setVisibility(View.GONE);
@@ -108,11 +111,22 @@ public class DisputeDetailsFragment extends Basefragment {
             });
         }
         recyclerView.setLayoutManager(new LinearLayoutManager(getActivity()));
+        btnGoToOrder.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(getActivity(), BasketItemsActivity.class);
+                intent.putExtra("ORDER_ID", order_id);
+//                intent.putExtra("ID_DISPUTE", dispute.getId());
+                getActivity().startActivity(intent);
+            }
+        });
         btnClose.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 progressBar.setVisibility(View.VISIBLE);
-                new EditTextDialog().setTitle(getString(R.string.result)).setClickListener(new EditTextDialog.ClickListener() {
+                new EditTextDialog().setTitle(getString(R.string.result))
+                        .setHint(getString(R.string.enterMessage))
+                        .setClickListener(new EditTextDialog.ClickListener() {
                     @Override
                     public void onClick(String message) {
 
@@ -126,7 +140,6 @@ public class DisputeDetailsFragment extends Basefragment {
                                 showToast(data.getResult().getAnswer());
                                 getActivity().onBackPressed();
                             }
-
                             @Override
                             public void onRequestEnd() {
                                 progressBar.setVisibility(View.INVISIBLE);
@@ -139,9 +152,11 @@ public class DisputeDetailsFragment extends Basefragment {
         return v;
     }
     Button btnClose;
+    Button btnGoToOrder;
     private void initView(View v) {
         progressBar = (ProgressBar) v.findViewById(R.id.disputeDetails_progressBar);
         recyclerView = (RecyclerView) v.findViewById(R.id.disputeDetails_recyclerView);
         btnClose=(Button)v.findViewById(R.id.disputeDetails_btnCloseDispute);
+        btnGoToOrder=(Button)v.findViewById(R.id.disputeDetails_btnGoToOrder);
     }
 }

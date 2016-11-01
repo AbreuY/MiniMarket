@@ -23,7 +23,7 @@ import com.balinasoft.mallione.networking.Response.ResponseCourier;
  * Created by Anton Kolotsey on 01.08.2016.
  */
 public class DialogSelectCouriers extends BaseDialog {
-    public interface ClickListener{
+    public interface ClickListener {
         void onClickOk(String courier_id);
     }
 
@@ -31,6 +31,7 @@ public class DialogSelectCouriers extends BaseDialog {
         this.clickListener = clickListener;
         return this;
     }
+
     String courierId;
     ClickListener clickListener;
     UserListener<? extends User> userListener;
@@ -38,31 +39,32 @@ public class DialogSelectCouriers extends BaseDialog {
     @Override
     public void onAttach(Activity activity) {
         super.onAttach(activity);
-        userListener=(UserListener<? extends User>)getActivity();
+        userListener = (UserListener<? extends User>) getActivity();
         requestCouriers.setFull_info("0");
         requestCouriers.setSession_id(userListener.getUser().getSession_id());
         requestCouriers.setUser_id(String.valueOf(userListener.getUser().getId()));
     }
-    RequestCouriers requestCouriers=new RequestCouriers();
+
+    RequestCouriers requestCouriers = new RequestCouriers();
+
     @Nullable
     @Override
     public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
-        View v=inflater.inflate(R.layout.dialog_select_couriers,null);
+        View v = inflater.inflate(R.layout.dialog_select_couriers, null);
         initView(v);
+
         btnOk.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                if(customNumberPicker.getTitles().size()==1){
-                    clickListener.onClickOk(String.valueOf(((Courier)customNumberPicker.getTitles().get(0)).getId()));
+                if (customNumberPicker.getTitles().size() == 1) {
+                    clickListener.onClickOk(String.valueOf(((Courier) customNumberPicker.getTitles().get(0)).getId()));
                     dismiss();
-                }else
-                if(clickListener!=null){
+                } else if (clickListener != null) {
                     clickListener.onClickOk(courierId);
                 }
                 dismiss();
             }
         });
-
 
         ApiFactory.getService().couriers(requestCouriers).enqueue(new MyCallbackWithMessageError<ResponseCourier>() {
             @Override
@@ -71,7 +73,7 @@ public class DialogSelectCouriers extends BaseDialog {
                 customNumberPicker.setSelectListener(new CustomNumberPicker.SelectListener() {
                     @Override
                     public void onSelect(Title title) {
-                        if(title.getClass()==Courier.class) {
+                        if (title.getClass() == Courier.class) {
                             Courier courier = (Courier) title;
                             if (courier != null)
                                 courierId = String.valueOf(courier.getId());
@@ -88,10 +90,12 @@ public class DialogSelectCouriers extends BaseDialog {
         });
         return v;
     }
+
     CustomNumberPicker customNumberPicker;
     Button btnOk;
+
     private void initView(View v) {
-        customNumberPicker=(CustomNumberPicker)v.findViewById(R.id.dialogSelectCourier_numPicker);
-        btnOk=(Button)v.findViewById(R.id.dialogSelectCourier_btnOk);
+        customNumberPicker = (CustomNumberPicker) v.findViewById(R.id.dialogSelectCourier_numPicker);
+        btnOk = (Button) v.findViewById(R.id.dialogSelectCourier_btnOk);
     }
 }

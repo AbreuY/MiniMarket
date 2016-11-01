@@ -26,11 +26,14 @@ import com.balinasoft.mallione.models.modelUsers.Courier;
 import com.balinasoft.mallione.models.modelUsers.Dispatcher;
 import com.balinasoft.mallione.models.modelUsers.Manager;
 import com.balinasoft.mallione.models.modelUsers.User;
-import com.balinasoft.mallione.networking.MyCallbackWithMessageError;
 import com.balinasoft.mallione.networking.Request.RequestLogout;
 import com.balinasoft.mallione.networking.Response.BaseResponse;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.iid.FirebaseInstanceId;
+
+import retrofit2.Call;
+import retrofit2.Callback;
+import retrofit2.Response;
 
 /**
  * Created by Microsoft on 27.06.2016.
@@ -67,24 +70,28 @@ public class NavHeaderFragment extends Basefragment {
             public void onBuer(Buer buer) {
                 fillHeader(buer);
                 loginListener.onBuer(buer);
+//                Toast.makeText(getActivity(), "Вы вошли как Покупатель", Toast.LENGTH_SHORT).show();
             }
 
             @Override
             public void onManager(Manager manager) {
                 fillHeader(manager);
                 loginListener.onManager(manager);
+//                Toast.makeText(getActivity(), "Вы вошли как Менеджер", Toast.LENGTH_SHORT).show();
             }
 
             @Override
             public void onCourier(Courier courier) {
                 fillHeader(courier);
                 loginListener.onCourier(courier);
+//                Toast.makeText(getActivity(), "Вы вошли как Курьер", Toast.LENGTH_SHORT).show();
             }
 
             @Override
             public void onDispatcher(Dispatcher dispatcher) {
                 fillHeader(dispatcher);
                 loginListener.onDispatcher(dispatcher);
+//                Toast.makeText(getActivity(), "Вы вошли как Диспетчер", Toast.LENGTH_SHORT).show();
             }
         });
     }
@@ -115,14 +122,14 @@ public class NavHeaderFragment extends Basefragment {
                 btnLogout.setVisibility(View.INVISIBLE);
                 btnLogin.setVisibility(View.VISIBLE);
 
-                getService().logout(new RequestLogout(userListener.getUser().getSession_id(),FirebaseInstanceId.getInstance().getToken(),String.valueOf(userListener.getUser().getId()))).enqueue(new MyCallbackWithMessageError<BaseResponse>() {
+                getService().logout(new RequestLogout(userListener.getUser().getSession_id(),FirebaseInstanceId.getInstance().getToken(),String.valueOf(userListener.getUser().getId()))).enqueue(new Callback<BaseResponse>() {
                     @Override
-                    public void onData(BaseResponse data) {
+                    public void onResponse(Call<BaseResponse> call, Response<BaseResponse> response) {
 
                     }
 
                     @Override
-                    public void onRequestEnd() {
+                    public void onFailure(Call<BaseResponse> call, Throwable t) {
 
                     }
                 });

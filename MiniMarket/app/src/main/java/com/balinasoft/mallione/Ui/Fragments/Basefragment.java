@@ -46,7 +46,11 @@ public class Basefragment extends Fragment {
     }
 
     public void showToast(String message) {
-        Toast.makeText(getActivity(), message, Toast.LENGTH_SHORT).show();
+        Toast.makeText(getContext().getApplicationContext(), message, Toast.LENGTH_SHORT).show();
+    }
+
+    public void showToast(String message, boolean quickly) {
+        Toast.makeText(getContext().getApplicationContext(), message, Toast.LENGTH_LONG).show();
     }
     public SwipyRefreshLayout getSwipe(){
         if(swipeable!=null){

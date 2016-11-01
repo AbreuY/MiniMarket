@@ -21,6 +21,9 @@ import com.balinasoft.mallione.models.modelUsers.User;
 import com.balinasoft.mallione.networking.MyCallbackWithMessageError;
 import com.balinasoft.mallione.networking.Response.ResponseAthorization;
 
+import retrofit2.Call;
+import retrofit2.Response;
+
 /**
  * Created by Microsoft on 30.06.2016.
  */
@@ -80,6 +83,7 @@ public class ProfileFragment extends Basefragment {
                     if (dispatcherFormFragment.isAdded()) {
                         dispatcherFormFragment.fillForm(form);
                     }
+                    form.setUser_id(String.valueOf(userListener.getUser().getId()));
                     getService().updateUserData(form).enqueue(new MyCallbackWithMessageError<ResponseAthorization>() {
                         @Override
                         public void onData(final ResponseAthorization data) {
@@ -91,6 +95,11 @@ public class ProfileFragment extends Basefragment {
                                 }
                             }).save();
                             showToast(data.getResult().getAnswer());
+                        }
+
+                        @Override
+                        public void onResponse(Call<ResponseAthorization> call, Response<ResponseAthorization> response) {
+                            super.onResponse(call, response);
                         }
 
                         @Override

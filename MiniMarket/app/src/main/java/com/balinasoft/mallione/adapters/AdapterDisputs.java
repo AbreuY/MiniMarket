@@ -89,7 +89,7 @@ public class AdapterDisputs extends RecyclerView.Adapter<AdapterDisputs.DisputeV
             public void onClick(View v) {
                 if (clickItemListener != null) {
                     clickItemListener.itemClick(dispute);
-                    clickItemListener.itemClick(dispute.getId());
+//                    clickItemListener.itemClick(dispute.getId());
                 }
             }
         });

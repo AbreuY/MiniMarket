@@ -8,9 +8,11 @@ import com.balinasoft.mallione.networking.Request.RequestAddRecord;
 import com.balinasoft.mallione.networking.Request.RequestAssess;
 import com.balinasoft.mallione.networking.Request.RequestCloseDispute;
 import com.balinasoft.mallione.networking.Request.RequestComment;
+import com.balinasoft.mallione.networking.Request.RequestConfirmPayment;
 import com.balinasoft.mallione.networking.Request.RequestCountNotification;
 import com.balinasoft.mallione.networking.Request.RequestCourierStatus;
 import com.balinasoft.mallione.networking.Request.RequestCouriers;
+import com.balinasoft.mallione.networking.Request.RequestDeleteNotification;
 import com.balinasoft.mallione.networking.Request.RequestFullDispute;
 import com.balinasoft.mallione.networking.Request.RequestItem;
 import com.balinasoft.mallione.networking.Request.RequestItemTime;
@@ -23,8 +25,8 @@ import com.balinasoft.mallione.networking.Request.RequestOrderManager;
 import com.balinasoft.mallione.networking.Request.RequestRecord;
 import com.balinasoft.mallione.networking.Request.RequestReviews;
 import com.balinasoft.mallione.networking.Request.RequestShops;
-import com.balinasoft.mallione.networking.Request.RequestUserData;
 import com.balinasoft.mallione.networking.Request.RequestUser;
+import com.balinasoft.mallione.networking.Request.RequestUserData;
 import com.balinasoft.mallione.networking.Request.SearchRequest;
 import com.balinasoft.mallione.networking.Response.BaseResponse;
 import com.balinasoft.mallione.networking.Response.CouriersDispatcherResponse;
@@ -60,6 +62,7 @@ import com.balinasoft.mallione.networking.Response.ResposeReviewsShopForBuyer;
 import java.util.HashMap;
 
 import okhttp3.MultipartBody;
+import okhttp3.ResponseBody;
 import retrofit2.Call;
 import retrofit2.http.Body;
 import retrofit2.http.Multipart;
@@ -70,7 +73,8 @@ import retrofit2.http.Part;
  * Created by Microsoft on 30.05.2016.
  */
 public interface API {
-    public static final String BASE_URL = "http://b2b-mallione.ru/index.php/Api/";
+    String BASE_URL = "http://b2b-mallione.ru/index.php/Api/";
+//    String BASE_URL = "http://balinasoft.com/minimarket/index.php/Api/";
 
     @Multipart
     @POST("Login")
@@ -135,7 +139,7 @@ public interface API {
     Call<ResponseCountNotification> countNotification(@Part("get_count_notifications") RequestCountNotification countNotification);
 
     @Multipart
-    @POST("GetNotifications")
+        @POST("GetNotifications")
     Call<ResponseNotification> notifications(@Part("get_notifications") RequestUserData requestUserData);
 
     @Multipart
@@ -154,9 +158,13 @@ public interface API {
     @POST("GetOrders")
     Call<ResponseOrders> orders(@Part("get_orders") RequestUserData requestUserData);
 
+
     @Multipart
     @POST("AddReview")
     Call<ResponseAnswer> addReview(@Part("add_review") RequestAssess requestAssess);
+
+    @POST("AddReview")
+    Call<ResponseAnswer> addReview(@Body MultipartBody filePart);
 
     @Multipart
     @POST("GetOrder")
@@ -205,6 +213,11 @@ public interface API {
     @Multipart
     @POST("OrderManagerResponse")
     Call<ResponseAnswer> orderManagerResponse(@Part("order_manager_response") RequestOrderManager requestOrderManager);
+
+    @Multipart
+    @POST("OrderManagerResponse")
+    Call<ResponseBody> orderManagerResponse2(@Part("order_manager_response") RequestOrderManager requestOrderManager);
+
     @Multipart
     @POST("OrderCourierResponse")
     Call<ResponseAnswer> orderCourierResponse(@Part("order_courier_response")RequestOrderCourier requestOrderCourier);
@@ -216,8 +229,13 @@ public interface API {
     @POST("GetCouriers")
     Call<ResponseCourier> couriers(@Part("get_couriers")RequestCouriers requestCouriers);
     @Multipart
-    @POST("SetCourierStatus")
-    Call<BaseResponse> setCourierStatus(@Part("set_courier_status")RequestCourierStatus requestStatus);
+    @POST("SetStatus")
+    Call<BaseResponse> setCourierStatus(@Part("set_status")RequestCourierStatus requestStatus);
+
+    @Multipart
+    @POST("DeleteNotification")
+    Call<BaseResponse> deleteNotification(@Part("delete_notification")RequestDeleteNotification requestDeleteNotification);
+
     @POST("OpenDispute")
     Call<ResponseAnswer> openDispute(@Body MultipartBody filePart);
 
@@ -237,5 +255,8 @@ public interface API {
     @Multipart
     @POST("PasswordRecovery")
     Call<ResponseAnswer> forgotPassword(@Part("password_recovery")HashMap<String, String> hashMap);
+    @Multipart
+    @POST("ConfirmPayment")
+    Call<ResponseAnswer> confirmPayment(@Part("confirm_payment")RequestConfirmPayment request);
 }
 

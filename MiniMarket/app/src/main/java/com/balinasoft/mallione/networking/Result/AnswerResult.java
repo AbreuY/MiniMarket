@@ -4,6 +4,9 @@ package com.balinasoft.mallione.networking.Result;
  * Created by Microsoft on 30.05.2016.
  */
 public class AnswerResult {
+    private String answer;
+    private int order_id;
+
     public String getAnswer() {
         return answer;
     }
@@ -12,5 +15,11 @@ public class AnswerResult {
         this.answer = answer;
     }
 
-    private String answer;
+    public int getOrder_id() {
+        return order_id;
+    }
+
+    public void setOrder_id(int order_id) {
+        this.order_id = order_id;
+    }
 }

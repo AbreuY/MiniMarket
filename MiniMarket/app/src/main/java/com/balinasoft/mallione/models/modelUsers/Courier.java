@@ -14,6 +14,7 @@ public class Courier extends User implements Parcelable,Title{
     private String c_car_color;
     private String c_status;
     private float c_rating;
+
     public Courier(){
 
     }

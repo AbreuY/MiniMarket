@@ -2,6 +2,7 @@ package com.balinasoft.mallione.Ui.Dialogs;
 
 import android.content.Context;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
@@ -46,7 +47,7 @@ public class DialogLogin extends FullScreenDialog {
     ImageView ivClose;
     LoginFragment loginFragment = new LoginFragment();
     AuthManager authManager;
-
+    SharedPreferences sPref;
 
     public interface LoginUserListener {
         void onBuer(Buer buer);
@@ -140,7 +141,10 @@ public class DialogLogin extends FullScreenDialog {
             @Override
             public void onClickForgotPassword() {
                 if (!editTextDialog.isAdded())
-                    editTextDialog.setTitle(getString(R.string.forgotPassword)).setTitleBtn(getString(R.string.send)).setClickListener(new EditTextDialog.ClickListener() {
+                    editTextDialog.setHint(getString(R.string.passRecovery))
+                            .setTitle(getString(R.string.forgotPassword))
+                            .setTitleBtn(getString(R.string.send))
+                            .setClickListener(new EditTextDialog.ClickListener() {
                         @Override
                         public void onClick(String message) {
                             HashMap<String,String> hashMap=new HashMap<String, String>();

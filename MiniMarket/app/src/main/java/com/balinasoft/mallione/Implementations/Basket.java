@@ -104,9 +104,13 @@ public class Basket implements Transaction {
     }
 
     public void checkBasket(ArrayList<BasketProductItem> basketProductItems, MyValueEventListener.CallBack callBack) {
-        databaseReference.child("users")
-                .child(firebaseUser.getUid()).child(TAG_BASKET).child(String.valueOf(basketProductItems.get(0).getShop_id()))
-                .addListenerForSingleValueEvent(new MyValueEventListener(basketProductItems, callBack));
+        try {
+            databaseReference.child("users")
+                    .child(firebaseUser.getUid()).child(TAG_BASKET).child(String.valueOf(basketProductItems.get(0).getShop_id()))
+                    .addListenerForSingleValueEvent(new MyValueEventListener(basketProductItems, callBack));
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
 
 
     }

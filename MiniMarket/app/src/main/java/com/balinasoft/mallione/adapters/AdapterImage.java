@@ -40,6 +40,7 @@ public class AdapterImage extends RecyclerView.Adapter<AdapterImage.ImageViewHol
 
     @Override
     public void onBindViewHolder(ImageViewHolder holder, int position) {
+//        final Uri uri=uris.get(position);
         final Uri uri=uris.get(position);
 
         holder.imageView.setImageURI(uri);

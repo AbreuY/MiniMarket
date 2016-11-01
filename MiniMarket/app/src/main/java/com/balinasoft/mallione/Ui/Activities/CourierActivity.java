@@ -267,6 +267,29 @@ public class CourierActivity extends AppCompatActivity
     }
 
     @Override
+    protected void onResume() {
+        try {
+            Bundle extras = getIntent().getExtras();
+            if (extras.getString("extra").equals("sendNotification")) {
+                getIntent().removeExtra("extra");
+                clearFragmentManager();
+                showFragment(NotificationFragment.TAG, null, false);
+                DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
+                drawer.closeDrawer(GravityCompat.START);
+            }
+        } catch (Exception e) {
+        }
+        super.onResume();
+    }
+
+    public void clearFragmentManager() {
+        for (int i = 0; i < getSupportFragmentManager().getBackStackEntryCount(); i++) {
+            getSupportFragmentManager().popBackStack();
+            getSupportFragmentManager().executePendingTransactions();
+        }
+    }
+
+    @Override
     public void closeToolbar() {
 
     }

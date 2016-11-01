@@ -10,7 +10,6 @@ import android.support.v4.app.NotificationCompat;
 import android.util.Log;
 
 import com.balinasoft.mallione.R;
-import com.balinasoft.mallione.Ui.Activities.BasketItemsActivity;
 import com.balinasoft.mallione.Ui.Activities.BuerActivity;
 import com.balinasoft.mallione.Ui.Activities.CourierActivity;
 import com.balinasoft.mallione.Ui.Activities.DispatcherActivity;
@@ -62,31 +61,32 @@ public class MyFirebaseMessagingService extends FirebaseMessagingService {
             @Override
             public void onEmpty() {
                 Intent intent = new Intent(MyFirebaseMessagingService.this, MainActivity.class);
-                sendNotification(remoteMessage.getData().get("message"),getIntent(remoteMessage,intent));
+                sendNotification(remoteMessage.getData().get("message"), getIntent(remoteMessage, intent));
             }
 
             @Override
             public void onManager(Manager manager) {
                 Intent intent = new Intent(MyFirebaseMessagingService.this, ManagerActivity.class);
-                sendNotification(remoteMessage.getData().get("message"),getIntent(remoteMessage,intent));
+                sendNotification(remoteMessage.getData().get("message"), getIntent(remoteMessage, intent));
             }
 
             @Override
             public void onCourier(Courier courier) {
                 Intent intent = new Intent(MyFirebaseMessagingService.this, CourierActivity.class);
-                sendNotification(remoteMessage.getData().get("message"),getIntent(remoteMessage,intent));
+                sendNotification(remoteMessage.getData().get("message"), getIntent(remoteMessage, intent));
             }
 
             @Override
             public void onBuer(Buer buer) {
                 Intent intent = new Intent(MyFirebaseMessagingService.this, BuerActivity.class);
-                sendNotification(remoteMessage.getData().get("message"),getIntent(remoteMessage,intent));
+                intent.putExtra("extra", ORDER);
+                sendNotification(remoteMessage.getData().get("message"), getIntent(remoteMessage, intent));
             }
 
             @Override
             public void onDispatcher(Dispatcher dispatcher) {
                 Intent intent = new Intent(MyFirebaseMessagingService.this, DispatcherActivity.class);
-                sendNotification(remoteMessage.getData().get("message"),getIntent(remoteMessage,intent));
+                sendNotification(remoteMessage.getData().get("message"), getIntent(remoteMessage, intent));
             }
         }).extract();
         // Check if message contains a notification payload.
@@ -106,16 +106,18 @@ public class MyFirebaseMessagingService extends FirebaseMessagingService {
      * @param messageBody FCM message body received.
      */
     private void sendNotification(String messageBody, Intent intent) {
+//        intent = new Intent(this, BuerActivity.class);
 
+        //showNotificationFragment()
         intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
+//
         PendingIntent pendingIntent = PendingIntent.getActivity(this, 0 /* Request code */, intent,
                 PendingIntent.FLAG_ONE_SHOT);
 
         Uri defaultSoundUri = RingtoneManager.getDefaultUri(RingtoneManager.TYPE_NOTIFICATION);
         NotificationCompat.Builder notificationBuilder = new NotificationCompat.Builder(this)
-                .setSmallIcon(R.drawable.ic_media_pause)
-                .setContentTitle(getString(R.string.app_name))
-                .setContentText(messageBody)
+                .setSmallIcon(R.drawable.shopping_invert)
+                .setContentTitle(messageBody)
                 .setAutoCancel(true)
                 .setSound(defaultSoundUri)
                 .setContentIntent(pendingIntent);
@@ -132,12 +134,10 @@ public class MyFirebaseMessagingService extends FirebaseMessagingService {
                 case ITEM:
                     return intent.putExtra(ITEM, remoteMessage.getData().get(ITEM));
                 case ORDER:
-
                     return intent.putExtra(ORDER, remoteMessage.getData().get(ORDER));
                 case RECORD:
                     return intent.putExtra(RECORD, remoteMessage.getData().get(RECORD));
                 case SHOP:
-                    intent=new Intent(this, BasketItemsActivity.class);
                     return intent.putExtra(SHOP, remoteMessage.getData().get(SHOP));
             }
         }

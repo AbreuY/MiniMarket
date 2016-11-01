@@ -31,7 +31,7 @@ import java.util.ArrayList;
  * Created by Microsoft on 22.07.2016.
  */
 public class DisputsFragment extends Basefragment {
-    public static final String TAG="DisputsFragment";
+    public static final String TAG = "DisputsFragment";
     RecyclerView recyclerView;
     ProgressBar progressBar;
     AdapterDisputs adapterDisputs;
@@ -39,43 +39,47 @@ public class DisputsFragment extends Basefragment {
     RequestUserData requestUserData;
     ShowFragmentListener showFragmentListener;
     ToolbarListener toolbarListener;
+
     @Override
     public void onAttach(Context context) {
         super.onAttach(context);
 
         try {
-            userListener=(UserListener<? extends User>)getActivity();
-            showFragmentListener=(ShowFragmentListener)getActivity();
-            toolbarListener=(ToolbarListener)getActivity();
-            showFragmentListener.showFragmentToolBar(BlurbFragment.TAG,null);
-        }catch (ClassCastException e){
+            userListener = (UserListener<? extends User>) getActivity();
+            showFragmentListener = (ShowFragmentListener) getActivity();
+            toolbarListener = (ToolbarListener) getActivity();
+            showFragmentListener.showFragmentToolBar(BlurbFragment.TAG, null);
+        } catch (ClassCastException e) {
 
         }
         toolbarListener.setTittle(getString(R.string.disputs));
         toolbarListener.closeToolbar();
-        adapterDisputs=new AdapterDisputs(getActivity(),new ArrayList<Dispute>());
+        adapterDisputs = new AdapterDisputs(getActivity(), new ArrayList<Dispute>());
         adapterDisputs.setClickItemListener(new AdapterDisputs.ClickItemListener() {
             @Override
             public void itemClick(String dispute_id) {
-                Intent intent=new Intent(getActivity(), BasketItemsActivity.class);
-                intent.putExtra("ID_DISPUTE",dispute_id);
+                Intent intent = new Intent(getActivity(), BasketItemsActivity.class);
+                intent.putExtra("ID_DISPUTE", dispute_id);
                 getActivity().startActivity(intent);
             }
 
             @Override
             public void itemClick(Dispute dispute) {
-
+                Intent intent = new Intent(getActivity(), BasketItemsActivity.class);
+                //intent.putExtra("ORDER_ID", dispute.getOrder_id());
+                intent.putExtra("ID_DISPUTE", dispute.getId());
+                getActivity().startActivity(intent);
             }
         });
         adapterDisputs.setClickOrderListener(new AdapterDisputs.ClickOrderListener() {
             @Override
             public void orderClick(String order_id) {
-                Intent intent=new Intent(getActivity(),BasketItemsActivity.class);
-                intent.putExtra("ORDER_ID",order_id);
+                Intent intent = new Intent(getActivity(), BasketItemsActivity.class);
+                intent.putExtra("ORDER_ID", order_id);
                 getActivity().startActivity(intent);
             }
         });
-        requestUserData=new RequestUserData(userListener.getUser().getSession_id(),userListener.getUser().getId());
+        requestUserData = new RequestUserData(userListener.getUser().getSession_id(), userListener.getUser().getId());
         addDispute();
 
     }
@@ -89,7 +93,7 @@ public class DisputsFragment extends Basefragment {
 
             @Override
             public void onRequestEnd() {
-                if(DisputsFragment.this.isResumed()){
+                if (DisputsFragment.this.isResumed()) {
                     progressBar.setVisibility(View.INVISIBLE);
                     swipyRefreshLayout.setRefreshing(false);
                 }
@@ -100,7 +104,7 @@ public class DisputsFragment extends Basefragment {
     @Nullable
     @Override
     public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
-        View v=inflater.inflate(R.layout.disputs_fragment,null);
+        View v = inflater.inflate(R.layout.disputs_fragment, null);
         initView(v);
         swipyRefreshLayout.setOnRefreshListener(new SwipyRefreshLayout.OnRefreshListener() {
             @Override
@@ -117,16 +121,16 @@ public class DisputsFragment extends Basefragment {
 
     SwipyRefreshLayout swipyRefreshLayout;
 
-    public void initView(View v){
-        recyclerView=(RecyclerView)v.findViewById(R.id.disputsFragment_recyclerView);
-        progressBar=(ProgressBar)v.findViewById(R.id.disputsFragment_progressBar);
-        swipyRefreshLayout=(SwipyRefreshLayout)v.findViewById(R.id.disputsFragment_swipe);
+    public void initView(View v) {
+        recyclerView = (RecyclerView) v.findViewById(R.id.disputsFragment_recyclerView);
+        progressBar = (ProgressBar) v.findViewById(R.id.disputsFragment_progressBar);
+        swipyRefreshLayout = (SwipyRefreshLayout) v.findViewById(R.id.disputsFragment_swipe);
     }
 
     @Override
     public void onResume() {
         super.onResume();
-        if(adapterDisputs!=null && adapterDisputs.getItemCount()>0){
+        if (adapterDisputs != null && adapterDisputs.getItemCount() > 0) {
             adapterDisputs.clear();
             requestUserData.setOffset(0);
             progressBar.setVisibility(View.VISIBLE);
