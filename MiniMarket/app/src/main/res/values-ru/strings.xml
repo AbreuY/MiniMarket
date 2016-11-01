@@ -146,4 +146,8 @@
     <string name="taxi">Такси</string>
     <string name="DeliveryTime">Время выполнения заказа:</string>
     <string name="AddPhoto">Добавить фото</string>
+    <string name="audio_permission_denied_dialog_title">Запрос на доступ к файловой системе</string>
+    <string name="audio_permission_denied_dialog_feedback">Доступ к файловой системе запрещен</string>
+    <string name="all_permissions_denied_feedback">Установите все разрешения</string>
+
 </resources>

@@ -74,7 +74,7 @@ public class DialogFragmentForSelectedPhoto extends BaseDialog {
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setRetainInstance(true);
+//        setRetainInstance(true);
     }
 
     @Nullable
@@ -119,6 +119,25 @@ public class DialogFragmentForSelectedPhoto extends BaseDialog {
         }
     }
 
+//    private void profCrop2(Uri pic_uri) {
+//        new CroperinoConfig("IMG_" + System.currentTimeMillis() + ".jpg", "/MikeLau/Pictures", "/sdcard/MikeLau/Pictures");
+//        CroperinoFileUtil.verifyStoragePermissions(getActivity());
+//        CroperinoFileUtil.setupDirectory(getActivity());
+//
+//        //Prepare Chooser (Gallery or Camera)
+//        Croperino.prepareChooser(getActivity(), "Capture photo...", ContextCompat.getColor(getActivity(), android.R.color.background_dark));
+//
+//        //Prepare Camera
+//        try {
+//            Croperino.prepareCamera(getActivity());
+//        } catch(Exception e) {
+//            e.printStackTrace();
+//        }
+//
+//        //Prepare Gallery
+//        Croperino.prepareGallery(getActivity());
+//    }
+
     @Override
     public void onActivityResult(int requestCode, int resultCode, Intent data) {
         super.onActivityResult(requestCode, resultCode, data);
@@ -135,7 +154,12 @@ public class DialogFragmentForSelectedPhoto extends BaseDialog {
                 e.printStackTrace();
             }
 
-            dismiss();
+            try {
+                dismiss();
+            } catch (Exception e) {
+                e.printStackTrace();
+            }
+
             if (bitmap != null) {
                 photoListener.uploadPhoto(bitmap);
                 onUriListener.onUri(FileUtil.getUri(bitmap));
