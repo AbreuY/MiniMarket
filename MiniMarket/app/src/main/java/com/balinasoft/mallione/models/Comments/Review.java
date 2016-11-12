@@ -28,5 +28,6 @@ public class Review extends BaseComment {
         float star=Float.valueOf(shop_score)/MAX_STAR;
         float rating=star*Integer.valueOf(shop_score);
         return rating;
+//        return Float.parseFloat(shop_score);
     }
 }

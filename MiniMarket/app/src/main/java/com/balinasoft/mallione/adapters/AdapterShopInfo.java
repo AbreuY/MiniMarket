@@ -102,7 +102,7 @@ public class AdapterShopInfo extends RecyclerView.Adapter {
         holder.tvName.setText(o.getUser().getFio());
         holder.tvComment.setText(o.getComment());
 
-        holder.ratingBar.setRating(o.getRatingShop());
+        holder.ratingBar.setRating(Float.parseFloat(o.getShop_score()));
         holder.tvDate.setText(o.getDate_time());
         if (o.getImage() != null && !o.getImage().isEmpty()) {
             holder.tvPhoto.setVisibility(View.VISIBLE);

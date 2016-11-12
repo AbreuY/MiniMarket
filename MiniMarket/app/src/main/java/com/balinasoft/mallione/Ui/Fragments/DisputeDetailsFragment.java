@@ -27,6 +27,10 @@ import com.balinasoft.mallione.networking.Request.RequestCloseDispute;
 import com.balinasoft.mallione.networking.Request.RequestFullDispute;
 import com.balinasoft.mallione.networking.Response.ResponseAnswer;
 import com.balinasoft.mallione.networking.Response.ResponseDisput;
+import com.karumi.dexter.Dexter;
+import com.karumi.dexter.listener.single.CompositePermissionListener;
+import com.karumi.dexter.listener.single.DialogOnDeniedPermissionListener;
+import com.karumi.dexter.listener.single.PermissionListener;
 
 import java.util.ArrayList;
 
@@ -41,6 +45,7 @@ public class DisputeDetailsFragment extends Basefragment {
     UserListener<? extends User> userListener;
     ToolbarListener toolbarListener;
     String order_id;
+    private PermissionListener phonePermissionListener;
 
     @Override
     public void onAttach(Context context) {
@@ -57,7 +62,7 @@ public class DisputeDetailsFragment extends Basefragment {
                     public String getUrl() {
                         return urlImage;
                     }
-                }).show(getFragmentManager(),"");
+                }).show(getFragmentManager(), "");
             }
         });
         adapterDispute.setMailClickListener(new AdapterDispute.MailClickListener() {
@@ -73,6 +78,7 @@ public class DisputeDetailsFragment extends Basefragment {
         adapterDispute.setPhoneClickListener(new AdapterDispute.PhoneClickListener() {
             @Override
             public void onPhone(String phone) {
+
                 Intent intent = new Intent(Intent.ACTION_CALL, Uri.parse("tel:" + phone));
                 startActivity(intent);
             }
@@ -90,6 +96,7 @@ public class DisputeDetailsFragment extends Basefragment {
     public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         View v = inflater.inflate(R.layout.dispute_details, null);
         initView(v);
+
         recyclerView.setAdapter(adapterDispute);
         if (getArguments() != null) {
             int idDispute = Integer.valueOf(getArguments().getString("ID_DISPUTE"));
@@ -99,7 +106,7 @@ public class DisputeDetailsFragment extends Basefragment {
                     toolbarListener.setTittle(getString(R.string.disput) + " №" + data.getResult().getId());
                     order_id = data.getResult().getOrder_id();
                     adapterDispute.setDispute(data.getResult());
-                    if(!data.getResult().isOpen()){
+                    if (!data.getResult().isOpen()) {
                         btnClose.setVisibility(View.GONE);
                     }
                 }
@@ -127,36 +134,40 @@ public class DisputeDetailsFragment extends Basefragment {
                 new EditTextDialog().setTitle(getString(R.string.result))
                         .setHint(getString(R.string.enterMessage))
                         .setClickListener(new EditTextDialog.ClickListener() {
-                    @Override
-                    public void onClick(String message) {
+                            @Override
+                            public void onClick(String message) {
 
-                        RequestCloseDispute closeDispute=new RequestCloseDispute(String.valueOf(getArguments().getString("ID_DISPUTE")),
-                                userListener.getUser().getSession_id(),
-                                String.valueOf(userListener.getUser().getId()));
-                        closeDispute.setResult(message);
-                        getService().closeDisput(closeDispute).enqueue(new MyCallbackWithMessageError<ResponseAnswer>() {
-                            @Override
-                            public void onData(ResponseAnswer data) {
-                                showToast(data.getResult().getAnswer());
-                                getActivity().onBackPressed();
+                                RequestCloseDispute closeDispute = new RequestCloseDispute(String.valueOf(getArguments().getString("ID_DISPUTE")),
+                                        userListener.getUser().getSession_id(),
+                                        String.valueOf(userListener.getUser().getId()));
+                                closeDispute.setResult(message);
+                                getService().closeDisput(closeDispute).enqueue(new MyCallbackWithMessageError<ResponseAnswer>() {
+                                    @Override
+                                    public void onData(ResponseAnswer data) {
+                                        showToast(data.getResult().getAnswer());
+                                        getActivity().onBackPressed();
+                                    }
+
+                                    @Override
+                                    public void onRequestEnd() {
+                                        progressBar.setVisibility(View.INVISIBLE);
+                                    }
+                                });
                             }
-                            @Override
-                            public void onRequestEnd() {
-                                progressBar.setVisibility(View.INVISIBLE);
-                            }
-                        });
-                    }
-                }).setTitleBtn(getString(R.string.send)).show(getFragmentManager(),"");
+                        }).setTitleBtn(getString(R.string.send)).show(getFragmentManager(), "");
             }
         });
         return v;
     }
+
     Button btnClose;
     Button btnGoToOrder;
+
     private void initView(View v) {
         progressBar = (ProgressBar) v.findViewById(R.id.disputeDetails_progressBar);
         recyclerView = (RecyclerView) v.findViewById(R.id.disputeDetails_recyclerView);
-        btnClose=(Button)v.findViewById(R.id.disputeDetails_btnCloseDispute);
-        btnGoToOrder=(Button)v.findViewById(R.id.disputeDetails_btnGoToOrder);
+        btnClose = (Button) v.findViewById(R.id.disputeDetails_btnCloseDispute);
+        btnGoToOrder = (Button) v.findViewById(R.id.disputeDetails_btnGoToOrder);
     }
+
 }

@@ -215,6 +215,4 @@ public class BasketItemsActivity extends AppCompatActivity implements ShowFragme
     public void closeToolbar() {
 
     }
-
-
 }
