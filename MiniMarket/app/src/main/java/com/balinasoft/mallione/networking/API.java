@@ -5,7 +5,6 @@ import com.balinasoft.mallione.models.FormModel.RegistrationForm;
 import com.balinasoft.mallione.models.FormModel.UpdateUserDataForm;
 import com.balinasoft.mallione.networking.Request.PaginationRequest;
 import com.balinasoft.mallione.networking.Request.RequestAddRecord;
-import com.balinasoft.mallione.networking.Request.RequestAssess;
 import com.balinasoft.mallione.networking.Request.RequestCloseDispute;
 import com.balinasoft.mallione.networking.Request.RequestComment;
 import com.balinasoft.mallione.networking.Request.RequestConfirmPayment;
@@ -159,12 +158,10 @@ public interface API {
     Call<ResponseOrders> orders(@Part("get_orders") RequestUserData requestUserData);
 
 
-    @Multipart
-    @POST("AddReview")
-    Call<ResponseAnswer> addReview(@Part("add_review") RequestAssess requestAssess);
+//    @Multipart
+//    @POST("AddReview")
+//    Call<ResponseAnswer> addReview(@Part("add_review") RequestAssess requestAssess);
 
-    @POST("AddReview")
-    Call<ResponseAnswer> addReview(@Body MultipartBody filePart);
 
     @Multipart
     @POST("GetOrder")
@@ -238,6 +235,10 @@ public interface API {
 
     @POST("OpenDispute")
     Call<ResponseAnswer> openDispute(@Body MultipartBody filePart);
+
+    @POST("AddReview")
+    Call<ResponseAnswer> addReview(@Body MultipartBody filePart);
+
 
     @Multipart
     @POST("OrderCourierConfirm")

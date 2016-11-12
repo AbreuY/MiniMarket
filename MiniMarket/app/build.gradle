@@ -9,8 +9,8 @@ android {
         applicationId "com.balinasoft.mallione"
         minSdkVersion 15
         targetSdkVersion 23
-        versionCode 14
-        versionName "1.0.12"
+        versionCode 15
+        versionName "1.0.13"
         renderscriptTargetApi 19
         renderscriptSupportModeEnabled true
         multiDexEnabled true

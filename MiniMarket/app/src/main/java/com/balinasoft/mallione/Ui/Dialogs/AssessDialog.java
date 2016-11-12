@@ -54,7 +54,6 @@ public class AssessDialog extends BaseDialog {
     RatingBar ratingBarShop, ratingBarCourier;
     EditText edTXAssess;
     Button btnAssess, btnAddPhoto;
-    RequestAssess requestAssess;
     UserListener<Buer> userListener;
     Order order;
     AdapterImage adapterImage;
@@ -99,7 +98,6 @@ public class AssessDialog extends BaseDialog {
     @Override
     public void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        requestAssess = new RequestAssess();
         dialogFragmentForSelectedPhoto = new DialogFragmentForSelectedPhoto().setOnUriListener(new DialogFragmentForSelectedPhoto.OnUriListener() {
             @Override
             public void onUri(Uri uri) {
@@ -124,6 +122,7 @@ public class AssessDialog extends BaseDialog {
             public void onClick(View v) {
                 progressBar.setVisibility(View.VISIBLE);
                 MultipartBody.Builder builder = new MultipartBody.Builder().setType(MultipartBody.FORM);
+                RequestAssess requestAssess = new RequestAssess();
 
                 ArrayList<File> files = new ArrayList<File>();
                 for (Uri uri : adapterImage.getUris()) {
@@ -131,7 +130,6 @@ public class AssessDialog extends BaseDialog {
                     builder.addFormDataPart("img_review_photo", file.getName(),
                             RequestBody.create(MediaType.parse("image/jpeg"), file));
                 }
-
                 requestAssess.setUser_id(String.valueOf(userListener.getUser().getId()));
                 requestAssess.setSession_id(userListener.getUser().getSession_id());
                 requestAssess.setComment(edTXAssess.getText().toString());
@@ -183,6 +181,7 @@ public class AssessDialog extends BaseDialog {
     }
 
     ProgressBar progressBar;
+
     void initView(View v) {
         ratingBarCourier = (RatingBar) v.findViewById(R.id.assessDialog_ratingBarCourier);
         ratingBarShop = (RatingBar) v.findViewById(R.id.assessDialog_ratingBarShop);
