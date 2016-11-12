@@ -20,7 +20,7 @@ public class MyPermissionListener implements PermissionListener {
 
     @Override
     public void onPermissionGranted(PermissionGrantedResponse response) {
-        activity.showPermissionGranted(response.getPermissionName());
+        activity.showPermissionGranted( );
     }
 
     @Override

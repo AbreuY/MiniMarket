@@ -1,59 +1,79 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    android:orientation="vertical" android:layout_width="match_parent"
-    android:layout_height="wrap_content">
-    <android.support.v7.widget.CardView
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:orientation="vertical">
+
+    <android.support.v7.widget.CardView xmlns:android="http://schemas.android.com/apk/res/android"
         xmlns:card_view="http://schemas.android.com/apk/res-auto"
-        xmlns:android="http://schemas.android.com/apk/res/android"
+        android:id="@+id/ratingItem.cardView"
+        style="@style/CardView"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginBottom="12dp"
-        android:id="@+id/ratingItem.cardView"
-        style="@style/CardView"
-        card_view:cardElevation="4dp"
         card_view:cardBackgroundColor="@android:color/white"
-        card_view:cardCornerRadius="2dp">
+        card_view:cardCornerRadius="2dp"
+        card_view:cardElevation="4dp">
+
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:orientation="vertical"
-            android:padding="4dp">
+            android:orientation="vertical">
+
             <RelativeLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:orientation="horizontal">
+                android:orientation="horizontal"
+                android:padding="4dp">
+
                 <TextView
                     android:id="@+id/commentItem.tvName"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content" />
+
                 <RatingBar
                     android:id="@+id/commentItem.ratingBar"
+                    style="@style/Base.Widget.AppCompat.RatingBar.Small"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_alignParentTop="true"
-                    android:layout_alignParentRight="true"
                     android:layout_alignParentEnd="true"
-                    android:numStars="6"
-                    style="@style/Base.Widget.AppCompat.RatingBar.Small"/>
+                    android:layout_alignParentRight="true"
+                    android:layout_alignParentTop="true"
+                    android:numStars="5" />
             </RelativeLayout>
+
             <TextView
                 android:id="@+id/commentItem.tvComment"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="8dp"/>
+                android:layout_marginTop="8dp"
+                android:padding="4dp" />
+
             <RelativeLayout
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content">
+                android:layout_height="wrap_content"
+                android:padding="4dp">
 
                 <TextView
                     android:id="@+id/commentItem.tvDate"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_alignParentTop="true"
+                    android:layout_alignParentEnd="true"
                     android:layout_alignParentRight="true"
-                    android:layout_alignParentEnd="true" />
+                    android:layout_alignParentTop="true" />
             </RelativeLayout>
 
+            <TextView
+                android:id="@+id/commentItem.tvPhoto"
+                android:layout_width="match_parent"
+                android:layout_height="20dp"
+                android:layout_weight="1"
+                android:background="@color/activeIndicator"
+                android:gravity="center"
+                android:textAlignment="center"
+                android:textColor="@android:color/white"
+                android:visibility="gone" />
+
         </LinearLayout>
-        </android.support.v7.widget.CardView>
+    </android.support.v7.widget.CardView>
 </LinearLayout>

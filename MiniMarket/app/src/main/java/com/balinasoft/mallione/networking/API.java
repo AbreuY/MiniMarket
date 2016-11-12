@@ -73,8 +73,8 @@ import retrofit2.http.Part;
  * Created by Microsoft on 30.05.2016.
  */
 public interface API {
-    String BASE_URL = "http://b2b-mallione.ru/index.php/Api/";
-//    String BASE_URL = "http://balinasoft.com/minimarket/index.php/Api/";
+//    String BASE_URL = "http://b2b-mallione.ru/index.php/Api/";
+    String BASE_URL = "http://balinasoft.com/minimarket/index.php/Api/";
 
     @Multipart
     @POST("Login")

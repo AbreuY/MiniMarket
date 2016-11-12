@@ -487,19 +487,19 @@ public class OrderDetailedFragment extends Basefragment {
                     });
                 else btnDispute.setVisibility(View.GONE);
 
-//                if (data.getResult().getStatus().equals("Доставлен")) {
-                if (data.getResult().getReview_status().equals("0")) {
-                    btnComment.setVisibility(View.VISIBLE);
-                    btnComment.setOnClickListener(new View.OnClickListener() {
-                        @Override
-                        public void onClick(View v) {
+                if (data.getResult().getStatus().equals("Завершен")) {
+                    if (data.getResult().getReview_status().equals("1")) {
+                        btnComment.setVisibility(View.VISIBLE);
+                        btnComment.setOnClickListener(new View.OnClickListener() {
+                            @Override
+                            public void onClick(View v) {
 //                                Order order = new Order();
 //                                order.setId(Integer.parseInt(requestOrderManager.getOrder_id()));
-                            new AssessDialog().setTypeAssess(AssessDialog.ORDER).setOrder(requestRecord.getOrder_id()).show(getFragmentManager(), "");
-                        }
-                    });
-//                    } else btnComment.setVisibility(View.GONE);
-                }
+                                new AssessDialog().setTypeAssess(AssessDialog.ORDER).setOrder(requestRecord.getOrder_id()).show(getFragmentManager(), "");
+                            }
+                        });
+                    } else btnComment.setVisibility(View.GONE);
+                } else btnComment.setVisibility(View.GONE);
             }
 
             @Override

@@ -51,7 +51,6 @@ public class BankFragment extends Basefragment implements OnBackPressedListener 
         toolbarListener = (ToolbarListener) getActivity();
         toolbarListener.setTittle(getString(R.string.OrderPayment));
         showFragmentListener = (ShowFragmentListener) getActivity();
-
     }
 
     @Override

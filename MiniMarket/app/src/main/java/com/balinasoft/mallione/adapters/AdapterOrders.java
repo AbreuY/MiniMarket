@@ -65,7 +65,8 @@ public class AdapterOrders extends RecyclerView.Adapter<AdapterOrders.OrderViewH
                     clickItemListener.clickItemImage(order);
             }
         });
-        if (order.getReview_status()!=null && order.getReview_status().equals("1")) {
+        if (order.getReview_status() != null && order.getReview_status().equals("1")) {
+            holder.ivBtn.setVisibility(View.VISIBLE);
             holder.ivBtn.setImageDrawable(context.getResources().getDrawable(R.drawable.rate));
             holder.ivBtn.setOnClickListener(new View.OnClickListener() {
                 @Override
@@ -74,6 +75,9 @@ public class AdapterOrders extends RecyclerView.Adapter<AdapterOrders.OrderViewH
                         clickItemListener.clickItemBtn(order);
                 }
             });
+        } else {
+            holder.ivBtn.setVisibility(View.GONE);
+//            holder.ivBtn.setImageDrawable(null);
         }
     }
 

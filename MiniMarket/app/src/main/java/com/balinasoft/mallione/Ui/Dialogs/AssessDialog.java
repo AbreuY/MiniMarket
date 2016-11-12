@@ -14,6 +14,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.ProgressBar;
 import android.widget.RatingBar;
 import android.widget.Toast;
 
@@ -61,6 +62,7 @@ public class AssessDialog extends BaseDialog {
     RecyclerView recyclerView;
     ViewGroup rootView;
     private PermissionListener storagePermissionListener;
+    private MultiplePermissionsListener multiplePermissionsListener;
     private String sOrder;
 
     public AssessDialog setTypeAssess(String typeAssess) {
@@ -120,10 +122,13 @@ public class AssessDialog extends BaseDialog {
         btnAssess.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                progressBar.setVisibility(View.VISIBLE);
                 MultipartBody.Builder builder = new MultipartBody.Builder().setType(MultipartBody.FORM);
+
+                ArrayList<File> files = new ArrayList<File>();
                 for (Uri uri : adapterImage.getUris()) {
                     File file = new File(uri.getPath());
-                    builder.addFormDataPart("img_dispute_photo[]", file.getName(),
+                    builder.addFormDataPart("img_review_photo", file.getName(),
                             RequestBody.create(MediaType.parse("image/jpeg"), file));
                 }
 
@@ -157,7 +162,7 @@ public class AssessDialog extends BaseDialog {
 
                     @Override
                     public void onRequestEnd() {
-
+                        progressBar.setVisibility(View.INVISIBLE);
                     }
                 });
 
@@ -169,25 +174,29 @@ public class AssessDialog extends BaseDialog {
                 if (Dexter.isRequestOngoing()) {
                     return;
                 }
-                Dexter.checkPermission(storagePermissionListener, Manifest.permission.WRITE_EXTERNAL_STORAGE);
+                Dexter.checkPermissions(multiplePermissionsListener, Manifest.permission.WRITE_EXTERNAL_STORAGE,
+                        Manifest.permission.CAMERA);
             }
         });
+
         return v;
     }
 
+    ProgressBar progressBar;
     void initView(View v) {
         ratingBarCourier = (RatingBar) v.findViewById(R.id.assessDialog_ratingBarCourier);
         ratingBarShop = (RatingBar) v.findViewById(R.id.assessDialog_ratingBarShop);
         edTXAssess = (EditText) v.findViewById(R.id.assessDialog_edTxComment);
         btnAssess = (Button) v.findViewById(R.id.assessDialog_btnAssess);
         btnAddPhoto = (Button) v.findViewById(R.id.assessDialog_btnAddPhoto);
-        recyclerView = (RecyclerView) v.findViewById(R.id.sendDisputeFragment_recyclerView);
+        recyclerView = (RecyclerView) v.findViewById(R.id.assessDialog_recyclerView);
+        progressBar = (ProgressBar) v.findViewById(R.id.assessDialog_progressBar);
+        progressBar.setVisibility(View.GONE);
     }
 
     private void createPermissionListeners() {
         PermissionListener feedbackViewPermissionListener = new MyPermissionListener(this);
-        MultiplePermissionsListener feedbackViewMultiplePermissionListener =
-                new MyMultiplePermissionListener(this);
+        multiplePermissionsListener = new MyMultiplePermissionListener(this);
         PermissionListener dialogOnDeniedPermissionListener =
                 DialogOnDeniedPermissionListener.Builder.withContext(getContext())
                         .withTitle(R.string.audio_permission_denied_dialog_title)
@@ -204,7 +213,7 @@ public class AssessDialog extends BaseDialog {
         token.continuePermissionRequest();
     }
 
-    public void showPermissionGranted(String permission) {
+    public void showPermissionGranted() {
         try {
             if (!dialogFragmentForSelectedPhoto.isAdded() && adapterImage.getUris().size() < 10) {
                 dialogFragmentForSelectedPhoto.show(getFragmentManager(), "");

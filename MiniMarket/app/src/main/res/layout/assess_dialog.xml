@@ -1,99 +1,122 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical">
     <!--android:background="@drawable/background_view"-->
 
-    <TextView
-        android:id="@+id/textView7"
+    <LinearLayout
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_gravity="center_horizontal"
-        android:layout_marginTop="16dp"
+        android:orientation="vertical"
         android:paddingLeft="32dp"
-        android:paddingRight="32dp"
-        android:text="@string/assessShop"
-        android:textSize="18dp"
-        android:textStyle="bold" />
+        android:paddingRight="32dp">
 
-    <RatingBar
-        android:id="@+id/assessDialog.ratingBarShop"
-        style="@style/Widget.AppCompat.RatingBar.Indicator"
-        android:layout_width="wrap_content"
+        <TextView
+            android:id="@+id/textView7"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
 
-        android:layout_height="wrap_content"
-        android:layout_gravity="center"
-        android:layout_marginLeft="32dp"
-        android:layout_marginRight="32dp"
-        android:layout_marginTop="8dp"
-        android:isIndicator="false"
-        android:numStars="5"
-        android:stepSize="1" />
+            android:layout_gravity="center_horizontal"
+            android:layout_marginTop="16dp"
+            android:gravity="center_horizontal"
+            android:text="@string/assessShop"
+            android:textSize="18dp"
+            android:textStyle="bold" />
 
-    <TextView
-        android:id="@+id/textView8"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_gravity="center_horizontal"
-        android:layout_marginTop="8dp"
-        android:text="@string/assessCourier"
-        android:textSize="18dp"
-        android:textStyle="bold" />
+        <RatingBar
+            android:id="@+id/assessDialog.ratingBarShop"
+            style="@style/Widget.AppCompat.RatingBar.Indicator"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/textView7"
+            android:layout_gravity="center"
+            android:layout_marginTop="8dp"
+            android:isIndicator="false"
+            android:numStars="5"
+            android:stepSize="1" />
 
-    <RatingBar
-        android:id="@+id/assessDialog.ratingBarCourier"
-        style="@style/Widget.AppCompat.RatingBar.Indicator"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_gravity="center_horizontal"
-        android:layout_marginTop="8dp"
-        android:isIndicator="false"
-        android:numStars="5"
-        android:stepSize="1" />
+        <TextView
+            android:id="@+id/textView8"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/assessDialog.ratingBarShop"
+            android:layout_marginTop="8dp"
 
-    <EditText
-        android:id="@+id/assessDialog.edTxComment"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_gravity="center_horizontal"
-        android:layout_marginTop="8dp"
-        android:hint="@string/writeComment"
-        android:imeOptions="actionDone"
-        android:maxLines="3"
-        android:paddingLeft="32dp"
-        android:paddingRight="32dp" />
+            android:gravity="center"
+            android:text="@string/assessCourier"
+            android:textSize="18dp"
+            android:textStyle="bold" />
+
+        <RatingBar
+            android:id="@+id/assessDialog.ratingBarCourier"
+            style="@style/Widget.AppCompat.RatingBar.Indicator"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/textView8"
+            android:layout_gravity="center_horizontal"
+            android:layout_marginTop="8dp"
+            android:isIndicator="false"
+            android:numStars="5"
+
+            android:stepSize="1" />
+
+        <EditText
+            android:id="@+id/assessDialog.edTxComment"
+            android:layout_width="180dp"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/assessDialog.ratingBarCourier"
+            android:layout_gravity="center_horizontal"
+            android:layout_marginTop="8dp"
+            android:hint="@string/writeComment"
+            android:imeOptions="actionDone"
+            android:maxLines="3"
+            android:layout_marginBottom="8dp" />
+
+        <Button
+            android:id="@+id/assessDialog.btnAddPhoto"
+            android:layout_width="match_parent"
+            android:layout_height="36dp"
+            android:layout_below="@+id/assessDialog.edTxComment"
+            android:layout_gravity="center_horizontal"
+            android:layout_marginTop="8dp"
+            android:background="@drawable/button_background"
+            android:text="@string/AddPhoto"
+
+            android:textAllCaps="false" />
 
 
-    <Button
-        android:id="@+id/assessDialog.btnAddPhoto"
-        android:layout_width="170dp"
-        android:layout_height="36dp"
-        android:layout_gravity="center_horizontal"
-        android:layout_marginTop="8dp"
-        android:background="@drawable/button_background"
-        android:text="@string/AddPhoto"
-        android:textAllCaps="false" />
+        <Button
+            android:id="@+id/assessDialog.btnAssess"
+            android:layout_width="match_parent"
+            android:layout_height="36dp"
+            android:layout_below="@+id/assessDialog.btnAddPhoto"
+            android:layout_gravity="center_horizontal"
+            android:layout_marginBottom="16dp"
+            android:layout_marginTop="8dp"
+            android:background="@drawable/button_background"
 
-    <Button
-        android:id="@+id/assessDialog.btnAssess"
-        android:layout_width="170dp"
-        android:layout_height="36dp"
-        android:layout_gravity="center_horizontal"
-        android:layout_marginBottom="16dp"
-        android:layout_marginTop="8dp"
-        android:background="@drawable/button_background"
-        android:text="@string/assess"
-        android:textAllCaps="false" />
+            android:text="@string/assess"
+            android:textAllCaps="false" />
 
-    <android.support.v7.widget.RecyclerView
-        android:id="@+id/sendDisputeFragment.recyclerView"
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:layout_above="@+id/sendDisputeFragment.btnAddphoto"
-        android:layout_alignParentLeft="true"
-        android:layout_alignParentStart="true"
-        android:layout_below="@+id/sendDisputeFragment.edTx"
-        android:layout_marginTop="8dp"></android.support.v7.widget.RecyclerView>
+        <ProgressBar
+            android:id="@+id/assessDialog.progressBar"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:indeterminate="false" />
 
-</LinearLayout>
+        <android.support.v7.widget.RecyclerView
+            android:id="@+id/assessDialog.recyclerView"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_alignParentLeft="true"
+            android:layout_alignParentStart="true"
+            android:layout_below="@+id/assessDialog.btnAssess"
+            android:layout_marginTop="8dp" />
+
+
+    </LinearLayout>
+
+
+</RelativeLayout>

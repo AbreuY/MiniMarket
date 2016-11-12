@@ -13,8 +13,10 @@ import retrofit2.http.Query;
  */
 
 public interface APIBank {
-    String BASE_URL = "https://3dsec.sberbank.ru/payment/rest/";
-    String PASSWORD = "mallione";
+    String BASE_URL = "https://securepayments.sberbank.ru/payment/rest/";
+//    String BASE_URL = "https://3dsec.sberbank.ru/payment/rest/";
+    String PASSWORD = "mirny678170";
+//    String PASSWORD = "mallione";
     String USER_NAME = "mallione-api";
     String RETURN_URL = "http://b2b-mallione.ru/payment/payment_success_ru.html";
     String FAIL_URL = "https://3dsec.sberbank.ru/payment/merchants/mallione/errors_ru.html";

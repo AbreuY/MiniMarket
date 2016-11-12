@@ -2,6 +2,7 @@ package com.balinasoft.mallione.adapters;
 
 import android.content.Context;
 import android.support.annotation.LayoutRes;
+import android.support.v4.app.FragmentActivity;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -10,6 +11,7 @@ import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.balinasoft.mallione.R;
+import com.balinasoft.mallione.Ui.Dialogs.GestureViewDialog;
 import com.balinasoft.mallione.models.Comments.Review;
 import com.balinasoft.mallione.models.Shops.Shop;
 import com.squareup.picasso.Picasso;
@@ -96,12 +98,31 @@ public class AdapterShopInfo extends RecyclerView.Adapter {
         holder.tvDescription.setText(o.getDescription());
     }
 
-    private void bindComment(Review o, AdapterItemFragment.CommentViewHolder holder) {
+    private void bindComment(final Review o, AdapterItemFragment.CommentViewHolder holder) {
         holder.tvName.setText(o.getUser().getFio());
         holder.tvComment.setText(o.getComment());
 
         holder.ratingBar.setRating(o.getRatingShop());
         holder.tvDate.setText(o.getDate_time());
+        if (o.getImage() != null && !o.getImage().isEmpty()) {
+            holder.tvPhoto.setVisibility(View.VISIBLE);
+            holder.tvPhoto.setText(R.string.pressToOpenPhoto);
+            holder.cardView.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    android.support.v4.app.FragmentManager fragmentManager = ((FragmentActivity) context).getSupportFragmentManager();
+                    new GestureViewDialog().setUrlListener(new GestureViewDialog.UrlListener() {
+                        @Override
+                        public String getUrl() {
+                            return o.getImage();
+                        }
+                    }).show(fragmentManager, "");
+//                    Toast.makeText(context, o.getComment(), Toast.LENGTH_SHORT).show();
+                }
+            });
+        } else {
+            holder.tvPhoto.setVisibility(View.GONE);
+        }
     }
 
     private void bindAddress(Address o, AddressViewHolder holder) {

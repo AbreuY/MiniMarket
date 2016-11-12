@@ -4,6 +4,7 @@ import android.content.Context;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.view.ViewPager;
+import android.support.v7.widget.CardView;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -461,8 +462,9 @@ public class AdapterItemFragment extends RecyclerView.Adapter<RecyclerView.ViewH
     }
 
     public static class CommentViewHolder extends RecyclerView.ViewHolder {
-        TextView tvName, tvDate, tvComment;
+        TextView tvName, tvDate, tvComment, tvPhoto;
         RatingBar ratingBar;
+        CardView cardView;
 
         public CommentViewHolder(View v) {
             super(v);
@@ -470,6 +472,8 @@ public class AdapterItemFragment extends RecyclerView.Adapter<RecyclerView.ViewH
             tvDate = (TextView) v.findViewById(R.id.commentItem_tvDate);
             tvComment = (TextView) v.findViewById(R.id.commentItem_tvComment);
             ratingBar = (RatingBar) v.findViewById(R.id.commentItem_ratingBar);
+            tvPhoto = (TextView) v.findViewById(R.id.commentItem_tvPhoto);
+            cardView = (CardView) v.findViewById(R.id.ratingItem_cardView);
         }
     }
 

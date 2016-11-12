@@ -14,6 +14,16 @@ public class BaseComment {
 
     private String date_time;
 
+    private String image;
+
+    public String getImage() {
+        return image;
+    }
+
+    public void setImage(String image) {
+        this.image = image;
+    }
+
     public String getDate_time() {
         return date_time;
     }
