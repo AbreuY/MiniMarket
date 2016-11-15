@@ -94,6 +94,7 @@
     <string name="assess">Assess</string>
     <string name="writeComment">Write comment</string>
     <string name="assessShop">Assess shop</string>
+    <string name="assessProduct">Assess product</string>
     <string name="assessCourier">Assess courier</string>
     <string name="infoOrder">Information order:</string>
     <string name="commentOrder">Comment order:</string>
@@ -140,6 +141,7 @@
     <string name="title_activity_dispatcher">DispatcherActivity</string>
     <string name="couriers">Couriers</string>
     <string name="backCategory">Back category</string>
+    <string name="addComment">Add comment</string>
     <string name="selectCouriers">Select courier</string>
     <string name="passRecovery">Enter your E-Mail</string>
     <string name="goToOrder">Go to order</string>

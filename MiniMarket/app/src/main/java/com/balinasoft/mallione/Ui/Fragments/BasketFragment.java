@@ -82,6 +82,7 @@ public class BasketFragment extends Basefragment {
 
             @Override
             public void onList(final HashMap<String, HashMap<String, ProductFire>> list) {
+                progressBar.setVisibility(View.VISIBLE);
                 listShops = list;
                 final List<String> strings = new ArrayList<String>();
                 strings.addAll(list.keySet());

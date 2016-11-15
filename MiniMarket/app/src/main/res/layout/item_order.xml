@@ -16,7 +16,8 @@
         card_view:cardElevation="8dp"
         android:layout_alignParentTop="true"
         android:layout_alignParentLeft="true"
-        android:layout_alignParentStart="true">
+        android:layout_alignParentStart="true"
+        android:id="@+id/itemOrder.cardView">
         <RelativeLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"

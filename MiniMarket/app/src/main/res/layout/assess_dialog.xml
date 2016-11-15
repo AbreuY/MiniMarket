@@ -13,7 +13,7 @@
         android:paddingRight="32dp">
 
         <TextView
-            android:id="@+id/textView7"
+            android:id="@+id/assessDialog.tvAssesName"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
 
@@ -29,7 +29,7 @@
             style="@style/Widget.AppCompat.RatingBar.Indicator"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_below="@+id/textView7"
+            android:layout_below="@+id/assessDialog.tvAssesName"
             android:layout_gravity="center"
             android:layout_marginTop="8dp"
             android:isIndicator="false"
@@ -37,7 +37,7 @@
             android:stepSize="1" />
 
         <TextView
-            android:id="@+id/textView8"
+            android:id="@+id/assessDialog.tvAssessCourier"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_below="@+id/assessDialog.ratingBarShop"
@@ -53,7 +53,7 @@
             style="@style/Widget.AppCompat.RatingBar.Indicator"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_below="@+id/textView8"
+            android:layout_below="@+id/assessDialog.tvAssessCourier"
             android:layout_gravity="center_horizontal"
             android:layout_marginTop="8dp"
             android:isIndicator="false"

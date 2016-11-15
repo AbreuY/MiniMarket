@@ -171,10 +171,10 @@ public class MyOrderFragment extends Basefragment {
 
                 @Override
                 public void clickItemBtn(Order order) {
-                    assessDialog = new AssessDialog();
-                    assessDialog.setOrder(order);
-                    assessDialog.setTypeAssess(AssessDialog.ORDER);
-                    assessDialog.show(getFragmentManager(), "");
+                    new AssessDialog().setOrder(String.valueOf(order.getId()))
+//                            .setItemId()
+                            .setTypeAssess(AssessDialog.ORDER)
+                            .show(getFragmentManager(), "");
                 }
 
             });

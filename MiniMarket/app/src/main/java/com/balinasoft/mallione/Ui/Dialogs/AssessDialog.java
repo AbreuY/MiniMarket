@@ -16,6 +16,7 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ProgressBar;
 import android.widget.RatingBar;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import com.balinasoft.mallione.R;
@@ -27,6 +28,7 @@ import com.balinasoft.mallione.models.Order;
 import com.balinasoft.mallione.models.modelUsers.Buer;
 import com.balinasoft.mallione.networking.ApiFactory;
 import com.balinasoft.mallione.networking.MyCallbackWithMessageError;
+import com.balinasoft.mallione.networking.Request.RequestAddComment;
 import com.balinasoft.mallione.networking.Request.RequestAssess;
 import com.balinasoft.mallione.networking.Response.ResponseAnswer;
 import com.google.gson.Gson;
@@ -63,6 +65,9 @@ public class AssessDialog extends BaseDialog {
     private PermissionListener storagePermissionListener;
     private MultiplePermissionsListener multiplePermissionsListener;
     private String sOrder;
+    private String itemId;
+    private TextView tvAssessName;
+    private TextView tvAssessCourier;
 
     public AssessDialog setTypeAssess(String typeAssess) {
         this.typeAssess = typeAssess;
@@ -115,8 +120,65 @@ public class AssessDialog extends BaseDialog {
         Dexter.initialize(getContext());
         createPermissionListeners();
         initView(v);
+
         recyclerView.setAdapter(adapterImage);
         recyclerView.setLayoutManager(new LinearLayoutManager(getActivity()));
+        if (ifComment()) {
+            setPostRequestComment();
+        } else {
+            setPostRequestReview();
+        }
+
+        ;
+        btnAddPhoto.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                if (Dexter.isRequestOngoing()) {
+                    return;
+                }
+                Dexter.checkPermissions(multiplePermissionsListener, Manifest.permission.WRITE_EXTERNAL_STORAGE,
+                        Manifest.permission.CAMERA);
+            }
+        });
+
+        return v;
+    }
+
+    private void setPostRequestComment() {
+        btnAssess.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                progressBar.setVisibility(View.VISIBLE);
+
+                RequestAddComment requestAddComment = new RequestAddComment();
+
+                requestAddComment.setUser_id(String.valueOf(userListener.getUser().getId()));
+                requestAddComment.setSession_id(userListener.getUser().getSession_id());
+                requestAddComment.setComment(edTXAssess.getText().toString());
+                requestAddComment.setScore(String.valueOf((int) ratingBarShop.getRating()));
+                if (typeAssess != null && typeAssess.equals(ORDER)) {
+                    requestAddComment.setItem_id(itemId);
+                }
+
+                ApiFactory.getService().addComment(requestAddComment).enqueue(new MyCallbackWithMessageError<ResponseAnswer>() {
+                    @Override
+                    public void onData(ResponseAnswer data) {
+                        Toast.makeText(getActivity(), data.getResult().getAnswer(), Toast.LENGTH_SHORT).show();
+                    }
+
+                    @Override
+                    public void onRequestEnd() {
+                        progressBar.setVisibility(View.INVISIBLE);
+                        dismiss();
+                        getActivity().onBackPressed();
+                    }
+                });
+            }
+        });
+    }
+
+    private void setPostRequestReview() {
+
         btnAssess.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -145,7 +207,7 @@ public class AssessDialog extends BaseDialog {
                     public void onData(ResponseAnswer data) {
 //                        order.setReview_status("1");
                         Toast.makeText(getActivity(), data.getResult().getAnswer(), Toast.LENGTH_SHORT).show();
-                        dismiss();
+
                     }
 
                     @Override
@@ -161,28 +223,36 @@ public class AssessDialog extends BaseDialog {
                     @Override
                     public void onRequestEnd() {
                         progressBar.setVisibility(View.INVISIBLE);
+                        dismiss();
+//                        getActivity().onBackPressed();
                     }
                 });
 
             }
         });
-        btnAddPhoto.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                if (Dexter.isRequestOngoing()) {
-                    return;
-                }
-                Dexter.checkPermissions(multiplePermissionsListener, Manifest.permission.WRITE_EXTERNAL_STORAGE,
-                        Manifest.permission.CAMERA);
-            }
-        });
+    }
 
-        return v;
+    private boolean ifComment() {
+        if (itemId != null) {
+            tvAssessName.setText(R.string.assessProduct);
+            ratingBarCourier.setVisibility(View.GONE);
+            btnAddPhoto.setVisibility(View.GONE);
+            tvAssessCourier.setVisibility(View.GONE);
+            return true;
+        } else {
+            tvAssessName.setText(R.string.assessShop);
+            ratingBarCourier.setVisibility(View.VISIBLE);
+            btnAddPhoto.setVisibility(View.VISIBLE);
+            tvAssessCourier.setVisibility(View.VISIBLE);
+            return false;
+        }
     }
 
     ProgressBar progressBar;
 
     void initView(View v) {
+        tvAssessCourier = (TextView) v.findViewById(R.id.assessDialog_tvAssessCourier);
+        tvAssessName = (TextView) v.findViewById(R.id.assessDialog_tvAssesName);
         ratingBarCourier = (RatingBar) v.findViewById(R.id.assessDialog_ratingBarCourier);
         ratingBarShop = (RatingBar) v.findViewById(R.id.assessDialog_ratingBarShop);
         edTXAssess = (EditText) v.findViewById(R.id.assessDialog_edTxComment);
@@ -222,5 +292,10 @@ public class AssessDialog extends BaseDialog {
         }
     }
 
+
+    public AssessDialog setItemId(String itemId) {
+        this.itemId = itemId;
+        return this;
+    }
 
 }

@@ -14,5 +14,6 @@
         android:layout_height="wrap_content"
         android:id="@+id/basketFragment.progressBar"
         android:layout_centerVertical="true"
+        android:visibility="gone"
         android:layout_centerHorizontal="true" />
 </RelativeLayout>

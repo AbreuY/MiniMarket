@@ -1,6 +1,7 @@
 package com.balinasoft.mallione.adapters;
 
 import android.content.Context;
+import android.support.v7.widget.CardView;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -58,13 +59,20 @@ public class AdapterOrders extends RecyclerView.Adapter<AdapterOrders.OrderViewH
         holder.tvDate.setText(order.getDate_time_start());
         holder.tvPrice.setText(order.getTotal());
         holder.tvStatus.setText(order.getStatus());
-        holder.ivShop.setOnClickListener(new View.OnClickListener() {
+        holder.cardView.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 if (clickItemListener != null)
                     clickItemListener.clickItemImage(order);
             }
         });
+//        holder.ivShop.setOnClickListener(new View.OnClickListener() {
+//            @Override
+//            public void onClick(View v) {
+//                if (clickItemListener != null)
+//                    clickItemListener.clickItemImage(order);
+//            }
+//        });
         if (order.getReview_status() != null && order.getReview_status().equals("1")) {
             holder.ivBtn.setVisibility(View.VISIBLE);
             holder.ivBtn.setImageDrawable(context.getResources().getDrawable(R.drawable.rate));
@@ -88,10 +96,12 @@ public class AdapterOrders extends RecyclerView.Adapter<AdapterOrders.OrderViewH
 
     public static class OrderViewHolder extends RecyclerView.ViewHolder {
         ImageView ivShop, ivBtn;
+        CardView cardView;
         TextView tvId, tvNameShop, tvDate, tvPrice, tvStatus;
 
         public OrderViewHolder(View itemView) {
             super(itemView);
+            cardView = (CardView) itemView.findViewById(R.id.itemOrder_cardView);
             ivShop = (ImageView) itemView.findViewById(R.id.ItemOrder_ivShop);
             ivBtn = (ImageView) itemView.findViewById(R.id.ItemOrder_ivButton);
             tvId = (TextView) itemView.findViewById(R.id.ItemOrder_tvId);

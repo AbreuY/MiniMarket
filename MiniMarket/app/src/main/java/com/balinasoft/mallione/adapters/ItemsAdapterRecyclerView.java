@@ -239,7 +239,7 @@ public class ItemsAdapterRecyclerView extends RecyclerSwipeAdapter<ItemsAdapterR
             ivBasket = (ImageView) itemView.findViewById(R.id.itemFragment_ivBasket);
             tvDescription = (TextView) itemView.findViewById(R.id.itemFragment_tvDescription);
             tvAmount = (TextView) itemView.findViewById(R.id.itemFragment_tvAmount);
-            ratingBar.setNumStars(6);
+            ratingBar.setNumStars(5);
 
             swipeLayout = (SwipeLayout) itemView.findViewById(R.id.itemFragment_swipe);
             if (swipeLayout != null)

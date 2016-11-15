@@ -4,6 +4,7 @@ import com.balinasoft.mallione.models.FormModel.LoginForm;
 import com.balinasoft.mallione.models.FormModel.RegistrationForm;
 import com.balinasoft.mallione.models.FormModel.UpdateUserDataForm;
 import com.balinasoft.mallione.networking.Request.PaginationRequest;
+import com.balinasoft.mallione.networking.Request.RequestAddComment;
 import com.balinasoft.mallione.networking.Request.RequestAddRecord;
 import com.balinasoft.mallione.networking.Request.RequestCloseDispute;
 import com.balinasoft.mallione.networking.Request.RequestComment;
@@ -90,6 +91,11 @@ public interface API {
     @Multipart
     @POST("GetItem")
     Call<ResponseItem> item(@Part("get_item") HashMap<String, String> hashMap);
+
+    @Multipart
+    @POST("GetItem")
+    Call<ResponseItem> item(@Part("get_item") RequestItem requestItem);
+
     @Multipart
     @POST("GetCategories")
     Call<ResponseCategories> catigories(@Part("get_categories")RequestUser requetsUser);
@@ -109,9 +115,7 @@ public interface API {
     @POST("GetComments")
     Call<ResponseComments> comments(@Part("get_comments") RequestComment requestComment);
 
-    @Multipart
-    @POST("GetItem")
-    Call<ResponseItem> item(@Part("get_item") RequestItem requestItem);
+
 
     @Multipart
     @POST("GetShops")
@@ -156,12 +160,6 @@ public interface API {
     @Multipart
     @POST("GetOrders")
     Call<ResponseOrders> orders(@Part("get_orders") RequestUserData requestUserData);
-
-
-//    @Multipart
-//    @POST("AddReview")
-//    Call<ResponseAnswer> addReview(@Part("add_review") RequestAssess requestAssess);
-
 
     @Multipart
     @POST("GetOrder")
@@ -239,6 +237,9 @@ public interface API {
     @POST("AddReview")
     Call<ResponseAnswer> addReview(@Body MultipartBody filePart);
 
+    @Multipart
+    @POST("AddComment")
+    Call<ResponseAnswer> addComment(@Part("add_comment")RequestAddComment requestAddComment);
 
     @Multipart
     @POST("OrderCourierConfirm")

@@ -34,6 +34,7 @@
 
     <android:uses-permission android:name="android.permission.READ_PHONE_STATE" />
 
+
     <application
         android:name="android.support.multidex.MultiDexApplication"
         android:allowBackup="true"

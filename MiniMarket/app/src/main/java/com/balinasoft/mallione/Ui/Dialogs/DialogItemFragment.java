@@ -23,16 +23,16 @@ import com.balinasoft.mallione.models.ProductItems.BasketProductItem;
 import com.balinasoft.mallione.models.ProductItems.FullProductItem;
 import com.balinasoft.mallione.models.ProductItems.SuperProductItem;
 import com.balinasoft.mallione.models.Shops.Shop;
+import com.balinasoft.mallione.models.modelUsers.Buer;
 import com.balinasoft.mallione.models.modelUsers.User;
 import com.balinasoft.mallione.networking.ApiFactory;
 import com.balinasoft.mallione.networking.MyCallbackWithMessageError;
 import com.balinasoft.mallione.networking.Request.RequestComment;
+import com.balinasoft.mallione.networking.Request.RequestItem;
 import com.balinasoft.mallione.networking.Response.ResponseComments;
 import com.balinasoft.mallione.networking.Response.ResponseItem;
 import com.orangegangsters.github.swipyrefreshlayout.library.SwipyRefreshLayout;
 import com.orangegangsters.github.swipyrefreshlayout.library.SwipyRefreshLayoutDirection;
-
-import java.util.HashMap;
 
 /**
  * Created by Microsoft on 02.07.2016.
@@ -69,14 +69,16 @@ public class DialogItemFragment extends FullScreenDialog {
         }
 
     }
-    Button btnCategory;
+
+    Button btnReturnOrAddComment;
+
     @Nullable
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         super.onCreateView(inflater, container, savedInstanceState);
         View v = inflater.inflate(R.layout.item_dialog, container);
-        btnCategory=(Button)v.findViewById(R.id.itemDialog_btnCategory);
-        btnCategory.setOnClickListener(new View.OnClickListener() {
+        btnReturnOrAddComment = (Button) v.findViewById(R.id.itemDialog_btnCategory);
+        btnReturnOrAddComment.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 dismiss();
@@ -93,18 +95,39 @@ public class DialogItemFragment extends FullScreenDialog {
                 addComment(true);
             }
         });
+        userListener = (UserListener<Buer>) getActivity();
         requestComment = new RequestComment(productListener.getProduct().getId());
-        HashMap<String, String> hashMap = new HashMap<>();
+//        HashMap<String, String> hashMap = new HashMap<>();
 
-        hashMap.put("item_id", String.valueOf(productListener.getProduct().getId()));
+//        hashMap.put("item_id", String.valueOf(productListener.getProduct().getId()));
 
-        ApiFactory.getService().item(hashMap).enqueue(new MyCallbackWithMessageError<ResponseItem>() {
+        RequestItem requestItem = new RequestItem();
+        requestItem.setItem_id(String.valueOf(productListener.getProduct().getId()));
+        requestItem.setUser_id(String.valueOf(userListener.getUser().getId()));
+        requestItem.setSession_id(String.valueOf(userListener.getUser().getSession_id()));
+
+        ApiFactory.getService().item(requestItem).enqueue(new MyCallbackWithMessageError<ResponseItem>() {
             @Override
-            public void onData(ResponseItem data) {
+            public void onData(final ResponseItem data) {
+                if (data.getResult().isCommented()) {
+                    btnReturnOrAddComment.setText(R.string.addComment);
+                    btnReturnOrAddComment.setOnClickListener(new View.OnClickListener() {
+                        @Override
+                        public void onClick(View v) {
+                            new AssessDialog().setTypeAssess(AssessDialog.ORDER)
+                                    .setItemId(String.valueOf(data.getResult().getId()))
+                                    .show(getFragmentManager(), "");
+                        }
+                    });
+                } else {
+                    btnReturnOrAddComment.setText(R.string.backCategory);
+                }
+
                 productItem = data.getResult();
                 if (productListener != null && productListener.getProduct().getClass() == BasketProductItem.class)
-                    adapterItemFragment = new AdapterItemFragment(productItem, getActivity(), getChildFragmentManager(),((BasketProductItem)productListener.getProduct()).getAmountProduct() );
-               else  adapterItemFragment = new AdapterItemFragment(productItem, getActivity(), getChildFragmentManager(),0);
+                    adapterItemFragment = new AdapterItemFragment(productItem, getActivity(), getChildFragmentManager(), ((BasketProductItem) productListener.getProduct()).getAmountProduct());
+                else
+                    adapterItemFragment = new AdapterItemFragment(productItem, getActivity(), getChildFragmentManager(), 0);
 
                 adapterItemFragment.setUser(user);
                 adapterItemFragment.setBasketListener(basketListener);
@@ -112,21 +135,27 @@ public class DialogItemFragment extends FullScreenDialog {
                     new MyFavoritesStorage().isFavorites(productItem, new MyFavoritesStorage.Callback() {
                         @Override
                         public void onSuccess() {
-                            adapterItemFragment.setLike(true);
+                            if (adapterItemFragment != null) {
+                                adapterItemFragment.setLike(true);
+                            }
                         }
 
                         @Override
                         public void onFailure() {
-                            adapterItemFragment.setLike(false);
+                            if (adapterItemFragment != null) {
+                                adapterItemFragment.setLike(false);
+                            }
                         }
                     });
                 } catch (IllegalArgumentException e) {
 
                 }
                 initListenersAdapter();
+                if (recyclerView != null) {
                 recyclerView.setAdapter(adapterItemFragment);
-                recyclerView.setLayoutManager(new LinearLayoutManager(getActivity()));
-                recyclerView.setHasFixedSize(true);
+                    recyclerView.setLayoutManager(new LinearLayoutManager(getActivity()));
+                    recyclerView.setHasFixedSize(true);
+                }
 
                 addComment(false);
 
@@ -134,7 +163,9 @@ public class DialogItemFragment extends FullScreenDialog {
 
             @Override
             public void onRequestEnd() {
-                progressBar.setVisibility(View.INVISIBLE);
+                if (progressBar != null) {
+                    progressBar.setVisibility(View.INVISIBLE);
+                }
             }
         });
 
@@ -220,22 +251,26 @@ public class DialogItemFragment extends FullScreenDialog {
         ApiFactory.getService().comments(requestComment).enqueue(new MyCallbackWithMessageError<ResponseComments>() {
             @Override
             public void onData(ResponseComments data) {
+                if (adapterItemFragment != null) {
 
-                int currentSize = adapterItemFragment.getItemCount() - 1;
+                    int currentSize = adapterItemFragment.getItemCount() - 1;
 
-                adapterItemFragment.addComments(data.getResult());
+                    adapterItemFragment.addComments(data.getResult());
 
-                if (data.getResult().size() > 0)
-                    requestComment.setOffset(requestComment.getOffset() + data.getResult().size());
+                    if (data.getResult().size() > 0)
+                        requestComment.setOffset(requestComment.getOffset() + data.getResult().size());
 
 
-                if (data.getResult().size() > 0 && isScroll)
-                    recyclerView.smoothScrollToPosition(currentSize + 1);
+                    if (data.getResult().size() > 0 && isScroll)
+                        recyclerView.smoothScrollToPosition(currentSize + 1);
+                }
             }
 
             @Override
             public void onRequestEnd() {
-                swipyRefreshLayout.setRefreshing(false);
+                if (swipyRefreshLayout != null) {
+                    swipyRefreshLayout.setRefreshing(false);
+                }
             }
         });
     }

@@ -92,6 +92,7 @@
     <string name="TotalPriceOrder">Обшая сумма заказа:</string>
     <string name="assess">Оценить</string>
     <string name="writeComment">Напишите отзыв...</string>
+    <string name="assessProduct">Оцените товар</string>
     <string name="assessShop">Оцените магазин</string>
     <string name="assessCourier">Оцените курьера</string>
     <string name="infoOrder">Информация о заказе:</string>
@@ -138,6 +139,7 @@
     <string name="enterTINOrg">Введите ИНН организации</string>
     <string name="couriers">Курьеры</string>
     <string name="backCategory">Назад в категории</string>
+    <string name="addComment">Добавить комментарий</string>
     <string name="selectCouriers">Выберите курьера</string>
     <string name="passRecovery">Введите E-Mail</string>
     <string name="goToOrder">Перейти в заказ</string>

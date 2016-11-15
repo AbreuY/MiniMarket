@@ -13,6 +13,7 @@
         android:background="@android:color/white"
         app:srl_direction="bottom"
         android:layout_above="@+id/itemDialog.btnCategory">
+        <!--вакудача-->
     <android.support.v7.widget.RecyclerView
         android:id="@+id/itemDialog.recyclerView"
         android:layout_width="match_parent"
