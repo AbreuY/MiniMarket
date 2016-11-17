@@ -95,7 +95,13 @@ public class DialogItemFragment extends FullScreenDialog {
                 addComment(true);
             }
         });
-        userListener = (UserListener<Buer>) getActivity();
+
+        try {
+            userListener = (UserListener<Buer>) getActivity();
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+
         requestComment = new RequestComment(productListener.getProduct().getId());
 //        HashMap<String, String> hashMap = new HashMap<>();
 
@@ -103,8 +109,10 @@ public class DialogItemFragment extends FullScreenDialog {
 
         RequestItem requestItem = new RequestItem();
         requestItem.setItem_id(String.valueOf(productListener.getProduct().getId()));
-        requestItem.setUser_id(String.valueOf(userListener.getUser().getId()));
-        requestItem.setSession_id(String.valueOf(userListener.getUser().getSession_id()));
+        if (userListener != null) {
+            requestItem.setUser_id(String.valueOf(userListener.getUser().getId()));
+            requestItem.setSession_id(String.valueOf(userListener.getUser().getSession_id()));
+        }
 
         ApiFactory.getService().item(requestItem).enqueue(new MyCallbackWithMessageError<ResponseItem>() {
             @Override
@@ -152,7 +160,7 @@ public class DialogItemFragment extends FullScreenDialog {
                 }
                 initListenersAdapter();
                 if (recyclerView != null) {
-                recyclerView.setAdapter(adapterItemFragment);
+                    recyclerView.setAdapter(adapterItemFragment);
                     recyclerView.setLayoutManager(new LinearLayoutManager(getActivity()));
                     recyclerView.setHasFixedSize(true);
                 }
